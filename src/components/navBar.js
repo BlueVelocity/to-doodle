@@ -4,7 +4,7 @@ export default function() {
     const navBar = document.createElement('div');
     navBar.id = 'nav-bar';
 
-    Dom.appendElement(navBar, createNavBar())
+    Dom.appendElement(navBar, createNavBar());
 
     return navBar;
 }
