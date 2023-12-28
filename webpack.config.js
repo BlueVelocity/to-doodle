@@ -1,7 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+const isProduction = process.env.NODE_ENV == 'production';
+
+const config = {
     entry: './src/index.js',
     devtool: 'inline-source-map',
     output: {
@@ -43,4 +45,13 @@ module.exports = {
             // Learn more about loaders from https://webpack.js.org/loaders/
         ],
     },
+};
+
+module.exports = () => {
+    if (isProduction) {
+        config.mode = 'production';
+    } else {
+        config.mode = 'development';
+    }
+    return config;
 };

@@ -61,5 +61,54 @@ table {
 /* STYLING */
 
 :root {
+	--background-color: #f0fdfa;
+	--main-color: #5eead4;
+	--secondary-color: #14b8a6;
+	--selection-color: #0f766e;
+	--warning-color: #fbbf24;
+
+	--area-one: 1 / 1 / 2 / end;
+	--area-two: 2 / 1 / 3 / 2;
+	--area-three: 2 / 2 / 3 / end;
+
     font-family: 'Roboto', sans-serif;
+	font-size: max(1vw, 2vh, 12px);
+}
+
+html {
+	width: 100vw;
+	height: 100vh;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	justify-content: center;
+	background-color: var(--background-color);
+}
+
+.content {
+	flex: 1;
+	max-width: 1300px;
+	height: 100%;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: 4rem 1fr;
+}
+
+.nav-bar {
+	grid-area: var(--area-one);
+	background-color: red;
+}
+
+.side-bar {
+	grid-area: var(--area-two);
+	background-color: green;
+}
+
+.to-do-info {
+	grid-area: var(--area-three);
+	background-color: blue;
 }
