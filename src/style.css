@@ -184,6 +184,10 @@ button:active {
 	cursor: pointer;
 }
 
+#side-bar > button {
+	width: 90%;
+}
+
 .project-widget-container {
 	width: 100%;
 
