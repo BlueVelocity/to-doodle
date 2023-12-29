@@ -1,1 +1,0 @@
-//will show to do information under each project

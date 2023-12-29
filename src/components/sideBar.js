@@ -1,5 +1,5 @@
 import Dom from '../modules/DOMInteraction';
-import projectWidget from './projectWidget';
+import projectWidgets from './projectWidgets';
 
 export default function() {
     const sideBar = document.createElement('div');
@@ -17,22 +17,11 @@ function createSideBar() {
     const projectWidgetContainer = document.createElement('div');
     projectWidgetContainer.classList = 'project-widget-container';
 
-    const defaultProjectWidget = document.createElement('div');
-    defaultProjectWidget.classList = 'project-widget';
-
-    const defaultProjectWidget1 = document.createElement('div');
-    defaultProjectWidget1.classList = 'project-widget';
-    const defaultProjectWidget2 = document.createElement('div');
-    defaultProjectWidget2.classList = 'project-widget';
-    const defaultProjectWidget3 = document.createElement('div');
-    defaultProjectWidget3.classList = 'project-widget';
-    const defaultProjectWidget4 = document.createElement('div');
-    defaultProjectWidget4.classList = 'project-widget';
-    const defaultProjectWidget5 = document.createElement('div');
-    defaultProjectWidget5.classList = 'project-widget';
-
-    Dom.appendElement(projectWidgetContainer, [ defaultProjectWidget, defaultProjectWidget1, defaultProjectWidget2,defaultProjectWidget3,defaultProjectWidget4,defaultProjectWidget5 ])
+    Dom.appendElement(projectWidgetContainer, projectWidgets())
 
     return [ addProjectButton, projectWidgetContainer ]
 }
+
+//will need function to insert new projectWidget component
+
 //side bar to contain separate project tabs

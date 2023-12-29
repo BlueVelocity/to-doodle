@@ -1,1 +1,0 @@
-//contains the styling for the widget and incorporates the logic from the project management module
