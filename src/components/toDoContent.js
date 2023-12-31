@@ -1,4 +1,4 @@
-import Dom from '../modules/DOMInteraction';
+import Dom from '../modules/DOMInteraction.js';
 import ToDoWidgets from './toDoWidgets.js';
 import ToDoInformation from './toDoInformation.js';
 

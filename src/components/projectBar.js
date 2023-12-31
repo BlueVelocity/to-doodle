@@ -1,16 +1,16 @@
 import Dom from '../modules/DOMInteraction';
-import projectWidgets from './projectWidgets';
+import projectWidgets from './projectWidget';
 
 export default function() {
-    const sideBar = document.createElement('div');
-    sideBar.id = 'side-bar';
+    const projectBar = document.createElement('div');
+    projectBar.id = 'side-bar';
 
-    Dom.appendElement(sideBar, createSideBar());
+    Dom.appendElement(projectBar, createProjectBar());
 
-    return sideBar;
+    return projectBar;
 }
 
-function createSideBar() {
+function createProjectBar() {
     const addProjectButton = document.createElement('button');
     addProjectButton.textContent = 'Create Project';
 
