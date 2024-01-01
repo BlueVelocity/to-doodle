@@ -263,6 +263,8 @@ input {
 	background-color: var(--note-color);
 }
 
+/* INPUT WINDOW */
+
 #window {
 	position: absolute;
 	top: 50%;
@@ -281,12 +283,15 @@ input {
 	background-color: var(--main-color);
 }
 
-#window > div {
-	display: flex;
+#window  div {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
 	align-items: center;
+	justify-items: center;
 }
 
-#window > div > * {
+#window div > * {
+	display: flex;
 	flex: 1;
 
 	margin: 0.2rem;

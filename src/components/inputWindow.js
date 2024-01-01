@@ -25,9 +25,12 @@ function task() {
 
         const priorityLabel = Dom.createBasicLabel('Priority:', 'task-priority-input');
         const priorityInput = Dom.createBasicInput('range', 'task-priority-input', 'task-priority-input');
+        const priorityCounter = document.createElement('span');
         priorityInput.setAttribute('min', '1');
         priorityInput.setAttribute('max', '5');
-        const priority = Dom.wrapInDiv(priorityLabel, priorityInput);
+        priorityInput.addEventListener('input', () => priorityCounter.textContent = priorityInput.value);
+        priorityCounter.textContent = priorityInput.value;
+        const priority = Dom.wrapInDiv(priorityLabel, Dom.wrapInDiv(priorityInput, priorityCounter));
         
         const notesLabel = Dom.createBasicLabel('Notes:', 'task-notes-input');
         const notesInput = Dom.createBasicInput('text', 'task-notes-input', 'task-notes-input');
