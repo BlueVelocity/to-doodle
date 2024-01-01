@@ -28,9 +28,7 @@ function createNavBar() {
     createTaskButton.id = 'create-task';
     createTaskButton.textContent = 'Create Task';
     createTaskButton.addEventListener('click', () => {
-        if (!Dom.isWindowShown()) {
-            Dom.showWindow(inputWindow.taskInputWindow())
-        }
+        Dom.showWindow(inputWindow.task())
     });
 
     return [ logo, projectsTab, calendarTab, contactinfoTab, createTaskButton ]

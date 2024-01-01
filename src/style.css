@@ -129,6 +129,10 @@ button:active {
 	box-shadow: inset 0.05rem 0.05rem 0.05rem;
 }
 
+input {
+	font-size: 1rem;
+}
+
 #content {
 	flex: 1;
 	max-width: 1300px;
@@ -266,8 +270,8 @@ button:active {
 
 	translate: -50% -50%;
 
-	width: 30rem;
-	height: 20rem;
+	display: flex;
+	flex-direction: column;
 
 	padding: 1rem;
 
@@ -275,4 +279,19 @@ button:active {
 	border-radius: 1rem;
 
 	background-color: var(--main-color);
+}
+
+#window > div {
+	display: flex;
+	align-items: center;
+}
+
+#window > div > * {
+	flex: 1;
+
+	margin: 0.2rem;
+}
+
+#window p {
+	margin-right: auto;
 }
