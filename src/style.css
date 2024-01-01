@@ -280,10 +280,12 @@ input {
 	border: black solid 1px;
 	border-radius: 1rem;
 
+	box-shadow: black 0.5rem 0.5rem 0.5rem;
+
 	background-color: var(--main-color);
 }
 
-#window  div {
+#window > div {
 	display: grid;
 	grid-template-columns: 1fr 2fr;
 	align-items: center;
