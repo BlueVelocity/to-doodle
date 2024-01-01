@@ -135,11 +135,13 @@ input {
 
 #content {
 	flex: 1;
+
 	max-width: 1300px;
 	height: 100%;
+	
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	grid-template-rows: 4rem 1fr;
+	grid-template-columns: 15rem repeat(4, 1fr);
+	grid-template-rows: max(4rem, 40px) 1fr;
 }
 
 #nav-bar {
