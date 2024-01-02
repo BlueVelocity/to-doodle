@@ -11,6 +11,15 @@ function task() {
     window.classList.add('task-window');
 
     function inputFields() {
+        const headerTitle = document.createElement('h3');
+        const exitButton = document.createElement('button');
+        const header = Dom.wrapInDiv(headerTitle, exitButton);
+        header.classList = 'window-header';
+        headerTitle.textContent = 'Create Task';
+        exitButton.textContent = 'X';
+        exitButton.classList = 'exit-button';
+        exitButton.addEventListener('click', Dom.closeWindow);
+        
         const titleLabel = Dom.createBasicLabel('Title:', 'task-title-input');
         const titleInput = Dom.createBasicInput('text', 'task-title-input', 'task-title-input');
         const title = Dom.wrapInDiv(titleLabel, titleInput);
@@ -36,7 +45,7 @@ function task() {
         const notesInput = Dom.createBasicInput('text', 'task-notes-input', 'task-notes-input');
         const notes = Dom.wrapInDiv(notesLabel, notesInput);
 
-        return [ title, dueDate, description, priority, notes ]//array of input field elements
+        return [ header, title, dueDate, description, priority, notes ]//array of input field elements
     }
 
     Dom.appendElement(window, inputFields());

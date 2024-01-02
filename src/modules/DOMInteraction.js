@@ -31,8 +31,9 @@ function showWindow(windowElement) {
     }
 }
 
-function closeWindow(windowElement) {
+function closeWindow() {
     var element = document.getElementById("window");
+    element.innerHTML = null;
     element.parentNode.removeChild(element);
     windowState.setFalse();
 }
