@@ -7,11 +7,7 @@ const windowState = (function() {
     const state = { windowIsShown: false};
 
     const isShown = function() {
-        if (state.windowIsShown === false) {
-            return false;
-        } else {
-            return true;
-        }
+        return state.windowIsShown;
     }
 
     const setFalse = function() {
@@ -22,9 +18,10 @@ const windowState = (function() {
         state.windowIsShown = true;
     }
 
-    return { isShown, setTrue, setFalse}
+    return { isShown, setTrue, setFalse }
 })();
 
+//checks if a window exists and displays the window if it does not
 function showWindow(windowElement) {
     if (!windowState.isShown()) {
         document.body.appendChild(windowElement);
@@ -35,6 +32,8 @@ function showWindow(windowElement) {
 }
 
 function closeWindow(windowElement) {
+    var element = document.getElementById("window");
+    element.parentNode.removeChild(element);
     windowState.setFalse();
 }
 
@@ -56,6 +55,7 @@ function createBasicInput(type, id, name) {
     return element;
 }
 
+//takes in an arbitrary number of elements and returns a div containing the elements
 function wrapInDiv(...args) {
     const div = document.createElement('div');
     appendElement(div, args);
