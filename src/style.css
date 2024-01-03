@@ -324,7 +324,6 @@ input {
 
 	align-items: center;
 
-	color: white;
 	background-color: #dc2626;
 
 	border-radius: 50%;
@@ -336,4 +335,8 @@ input {
 	background-color: #991b1b;
 
 	box-shadow: inset 0.05rem 0.05rem 0.05rem black;
+}
+
+#window .window-header button:hover {
+	cursor: pointer;
 }
