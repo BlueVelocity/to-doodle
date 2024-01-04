@@ -45,7 +45,11 @@ function task() {
         const notesInput = Dom.createBasicInput('text', 'task-notes-input', 'task-notes-input');
         const notes = Dom.wrapInDiv(notesLabel, notesInput);
 
-        return [ header, title, dueDate, description, priority, notes ]//array of input field elements
+        const submitButton = document.createElement('button');
+        submitButton.classList = 'submit-button';
+        submitButton.textContent = 'Submit';
+
+        return [ header, title, dueDate, description, priority, notes, submitButton ]//array of input field elements
     }
 
     Dom.appendElement(window, inputFields());
