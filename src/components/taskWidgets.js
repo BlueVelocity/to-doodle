@@ -1,25 +1,25 @@
 import Dom from '../modules/DOMInteraction.js';
-import ToDoData from '../modules/toDoManagement.js';
-import ProjectData from '../modules/projectManagement.js';
+import taskData from '../modules/taskManagement.js';
+import projectData from '../modules/projectManagement.js';
 
 export default function() {
 
-    return ToDoData().map(toDo => {
+    return taskData().map(toDo => {
         //create DOM elements that display:
         const toDoWidget = document.createElement('div');
         toDoWidget.classList = 'to-do-widget';
         toDoWidget.setAttribute('data-project', `${toDo.projectId}`);
         toDoWidget.setAttribute('data-toDoId', `${toDo.Id}`);
-        //ToDoData.title
+        //taskData.title
         const title = document.createElement('p');
         title.textContent = toDo.title;
-        //ToDoData.date
+        //taskData.date
         const creationDate = document.createElement('p');
         creationDate.textContent = toDo.date;
-        //ToDoData.checkbox (toggleable)
+        //taskData.checkbox (toggleable)
         const radio = document.createElement('input');
         radio.type = 'radio';
-        radio.id = ProjectData.Id + '-' + toDo.Id;
+        radio.id = projectData.Id + '-' + toDo.Id;
 
         //create DOM elements and listeners that allow for interaction with:
         //Todo view

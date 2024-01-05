@@ -2,12 +2,12 @@ import './style.css'
 import Dom from './modules/DOMInteraction.js'
 import navBar from './components/navBar.js';
 import projectBar from './components/projectBar.js';
-import toDoContent from './components/toDoContent.js';
+import taskContent from './components/taskContent.js';
 
 const loadPage = (function() {
     const content = document.getElementById('content');
 
     content.appendChild(navBar());
     content.appendChild(projectBar());
-    content.appendChild(toDoContent())
+    content.appendChild(taskContent())
 })();

@@ -1,8 +1,9 @@
 import Dom from '../modules/DOMInteraction.js';
+import taskManagement from '../modules/taskManagement.js';
 
 export default { task };
 
-const defaultWindow = document.createElement('div');
+const defaultWindow = document.createElement('form');
 defaultWindow.id = 'window';
 
 function task() {
@@ -46,8 +47,12 @@ function task() {
         const notes = Dom.wrapInDiv(notesLabel, notesInput);
 
         const submitButton = document.createElement('button');
+        submitButton.type = 'button';
         submitButton.classList = 'submit-button';
         submitButton.textContent = 'Submit';
+        submitButton.addEventListener('click', () => {
+            taskManagement.createTask(titleInput.value, dueDateInput.value, description.value, priorityInput.value, notesInput.value);
+        });
 
         return [ header, title, dueDate, description, priority, notes, submitButton ]//array of input field elements
     }
