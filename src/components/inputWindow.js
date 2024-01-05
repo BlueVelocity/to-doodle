@@ -1,4 +1,5 @@
 import Dom from '../modules/DOMInteraction.js';
+import projectManagement from '../modules/projectManagement.js';
 import taskManagement from '../modules/taskManagement.js';
 
 export default { task };
@@ -51,6 +52,7 @@ function task() {
         submitButton.classList = 'submit-button';
         submitButton.textContent = 'Submit';
         submitButton.addEventListener('click', () => {
+            const currentProject = projectManagement.getCurrentProject();
             taskManagement.createTask(titleInput.value, dueDateInput.value, description.value, priorityInput.value, notesInput.value);
         });
 
