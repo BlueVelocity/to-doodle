@@ -38,9 +38,6 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
-body {
-	line-height: 1;
-}
 ol, ul {
 	list-style: none;
 }
@@ -65,6 +62,7 @@ table {
 	--secondary-color: #99f6e4;
 	--selected-color: #14b8a6;
 	--note-color: #fef9c3;
+	--note-select-color: #e0dcad;
 	--warning-color: #fbbf24;
 	--button-color: #22c55e;
 	--button-select-color: #15803d;
@@ -228,9 +226,13 @@ input {
 	align-items: center;
 	text-align: center;
 
-	font-size: 1.8rem;
+	font-size: 1.5rem;
 
 	background-color: var(--note-color);
+}
+
+.project-widget:active {
+	background-color: var(--note-select-color);
 }
 
 .main-content {
@@ -310,9 +312,8 @@ input {
 
 #popUp div > * {
 	display: flex;
-	flex: 1;
-
 	margin: 0.2rem;
+	align-items: center;
 }
 
 #popUp p {
@@ -339,6 +340,11 @@ input {
 	border-radius: 50%;
 
 	box-shadow: none;
+}
+
+#popUp input {
+	width: 100%;
+	padding: 1px;
 }
 
 #popUp .popUp-header button:active {
