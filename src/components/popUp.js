@@ -1,5 +1,6 @@
 import Dom from '../modules/DOMInteraction.js';
 import projectManagement from '../modules/projectManagement.js';
+import projectBar from './projectBar.js';
 import taskManagement from '../modules/taskManagement.js';
 
 export default { project, task };
@@ -20,14 +21,14 @@ function header(title) {
     return header;
 }
 
-function submitButton(...args) {
+function submitButton() {
     const submitButton = document.createElement('button');
     submitButton.type = 'button';
     submitButton.classList = 'submit-button';
     submitButton.textContent = 'Submit';
-    submitButton.addEventListener('click', () => {
-        // taskManagement.createTask(args);
-    });
+
+    submitButton.addEventListener('click', (event) => Dom.closePopUp(event));
+
 
     return submitButton;
 }
@@ -45,6 +46,10 @@ function project() {
         const title = Dom.wrapInDiv(titleLabel, titleInput);
 
         const submitBtn = submitButton(titleInput.value);
+        submitBtn.addEventListener('click', () => {
+            projectManagement.createProject(titleInput.value)
+            projectBar.regenerateProjects();
+        });
 
         return [ popUpHeader, title, submitBtn ]//array of input field elements
     }
@@ -88,7 +93,10 @@ function task() {
         const notesInput = Dom.createBasicInput('text', 'task-notes-input', 'task-notes-input');
         const notes = Dom.wrapInDiv(notesLabel, notesInput);
 
-        const submitBtn = submitButton(titleInput.value, dueDateInput.value, description.value, priorityInput.value, notesInput.value);
+        const submitBtn = submitButton();
+        submitBtn.addEventListener('click', () => {
+            // taskManagement.createTask(titleInput.value, dueDateInput.value, description.value, priorityInput.value, notesInput.value);
+        });
 
         return [ popUpHeader, title, dueDate, description, priority, notes, submitBtn ]//array of input field elements
     }

@@ -1,8 +1,8 @@
 import projectData from '../modules/projectManagement';
 
-export default { constructWidgets }
+export default { generateWidgets }
 
-function constructWidgets() {
+function generateWidgets() {
     const projects = projectData.getProjects();
 
     const keys = Object.keys(projects);
