@@ -13,14 +13,12 @@ export default function() {
 
 function createMainContent() {
     const taskWidgetsContainer = document.createElement('div');
-    taskWidgetsContainer.classList = 'to-do-widget-container';
+    taskWidgetsContainer.classList = 'task-widget-container';
+    Dom.appendElement(taskWidgetsContainer, taskWidgets.loadWidgets());
 
-    // Dom.appendElement(taskWidgetsContainer, taskWidgets());
+    const taskInformationContainer = document.createElement('div');
+    taskInformationContainer.classList = 'task-information-container';
 
-    // const taskInformationContainer = document.createElement('div');
-    // taskInformationContainer.classList = 'to-do-information-container';
-    // Dom.appendElement(taskInformationContainer, taskInformation());
-
-    return [ taskWidgetsContainer ]
+    return [ taskWidgetsContainer, taskInformationContainer ]
 }
 //will show to do information under each project

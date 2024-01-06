@@ -250,39 +250,68 @@ input {
 	background-color: var(--background-color);
 }
 
-.to-do-widget-container,
-.to-do-information {
+.task-widget-container,
+.task-information {
 	padding: 1rem;
 	
 	border-radius: 1rem;
 }
 
-.to-do-widget-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: start;
+.task-widget-container {
+	display: grid;
+	grid-auto-rows: 3rem;
 
 	margin: 1rem;
+	padding: 1rem;
 
 	overflow-y: auto;
 
 	background-color: var(--secondary-color);
 }
 
-.to-do-widget {
-	flex: 1;
-
-	max-height: 3rem;
-
+.task-widget {
 	display: flex;
 	align-items: center;
 
-	background-color: purple;
+	margin: 0.2rem;
+	padding: 0.2rem 0.5rem;
+
+	font-size: 0.8rem;
+
+	border-radius: 0.5rem;
+
+	background-color: var(--note-color);
 }
 
-.to-do-information {
+.task-widget:hover {
+	cursor: pointer;
+}
+
+.task-widget * {
+	font-size: 0.8rem;
+	
+	margin-right: 1rem;
+}
+
+.task-widget input {
+	width: 1rem;
+	height: 1rem;
+}
+
+.task-widget button {
+	background-color: red;
+}
+
+.task-widget button:last-child {
+	margin-left: auto;
+}
+
+.task-information-container{
 	margin: 0 1rem 1rem;
-	background-color: var(--note-color);
+
+	border-radius: 1rem;
+
+	background-color: var(--secondary-color);
 }
 
 /* INPUT WINDOW */
