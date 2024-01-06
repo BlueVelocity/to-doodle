@@ -1,10 +1,10 @@
 export default { getProjects };
 
-const projects = [{Id: 1, name: 'Default'}];
+const projects = { 1: {title: 'Default'} }
 let projectsCounter = 1;
 
-function createProject(name) {
-    projects[`${projectsCounter}`] = {name};
+function createProject(title) {
+    projects[`${projectsCounter}`] = {title};
 }
 
 function getProjects() {

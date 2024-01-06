@@ -5,21 +5,18 @@ export default { constructWidgets }
 function constructWidgets() {
     const projects = projectData.getProjects();
 
-    const projectWidgets = projects.map( (projectData) => {
+    const keys = Object.keys(projects);
+
+    const projectWidgets = keys.map( (projectKey) => {
         const projectWidget = document.createElement('div');
         
         projectWidget.classList = 'project-widget';
-        projectWidget.textContent = projectData.name;
-        projectWidget.id = projectData.Id;
+        projectWidget.textContent = projects[`${projectKey}`][`title`];
+        //data id identifier used to get object 
+        projectWidget.id = projectKey;
 
         return projectWidget;
     })
-        
+
     return projectWidgets;
 }
-
-
-
-//need function to add project with attached identifier to tasks.  Add data-project attribute to both the project and related todo widgets
-
-//contains the styling for the widget and incorporates the logic from the project management module
