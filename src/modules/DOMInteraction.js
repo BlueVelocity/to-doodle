@@ -3,39 +3,41 @@ function appendElement(parentElement, elements) {
     elements.forEach(element => parentElement.appendChild(element))
 }
 
-const windowState = (function() {
-    const state = { windowIsShown: false};
+const popUpState = (function() {
+    const state = { popUpIsShown: false};
 
     const isShown = function() {
-        return state.windowIsShown;
+        return state.popUpIsShown;
     }
 
     const setFalse = function() {
-        state.windowIsShown = false;
+        state.popUpIsShown = false;
     }
 
     const setTrue = function() {
-        state.windowIsShown = true;
+        state.popUpIsShown = true;
     }
 
     return { isShown, setTrue, setFalse }
 })();
 
-//checks if a window exists and displays the window if it does not
-function showWindow(windowElement) {
-    if (!windowState.isShown()) {
-        document.body.appendChild(windowElement);
-        windowState.setTrue();
+//checks if a popUp exists and displays the popUp if it does not
+function showPopUp(popUpElement) {
+    if (!popUpState.isShown()) {
+        document.body.appendChild(popUpElement);
+        popUpState.setTrue();
     } else {
-        console.log('Error: Window present');
+        console.log('Error: popUp present');
     }
 }
 
-function closeWindow() {
-    var element = document.getElementById("window");
+function closePopUp(event) {
+    event.preventDefault();
+
+    var element = document.getElementById("popUp");
     element.innerHTML = null;
     element.parentNode.removeChild(element);
-    windowState.setFalse();
+    popUpState.setFalse();
 }
 
 //takes in parameters| string and returns label element with attributes
@@ -63,4 +65,4 @@ function wrapInDiv(...args) {
     return div;
 }
 
-export default { appendElement, windowState, showWindow, closeWindow, createBasicLabel, createBasicInput, wrapInDiv };
+export default { appendElement, popUpState, showPopUp, closePopUp, createBasicLabel, createBasicInput, wrapInDiv };

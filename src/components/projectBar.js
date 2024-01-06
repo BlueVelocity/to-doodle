@@ -1,4 +1,5 @@
 import Dom from '../modules/DOMInteraction';
+import popUp from './popUp';
 import projectWidgets from './projectWidget';
 
 export default function() {
@@ -11,15 +12,21 @@ export default function() {
 }
 
 function createProjectBar() {
-    const addProjectButton = document.createElement('button');
-    addProjectButton.textContent = 'Create Project';
+    const createProjectButton = document.createElement('button');
+    createProjectButton.id = 'create-project';
+    createProjectButton.textContent = 'Create Project';
+    createProjectButton.addEventListener('click', () => {
+        Dom.showPopUp(popUp.project())
+    });
 
     const projectWidgetContainer = document.createElement('div');
     projectWidgetContainer.classList = 'project-widget-container';
 
     Dom.appendElement(projectWidgetContainer, projectWidgets())
 
-    return [ addProjectButton, projectWidgetContainer ]
+    
+
+    return [ createProjectButton, projectWidgetContainer ]
 }
 
 //will need function to insert new projectWidget component

@@ -1,5 +1,5 @@
 import Dom from '../modules/DOMInteraction';
-import inputWindow from './inputWindow.js';
+import inputWindow from './popUp.js';
 
 export default function() {
     const navBar = document.createElement('div');
@@ -28,7 +28,7 @@ function createNavBar() {
     createTaskButton.id = 'create-task';
     createTaskButton.textContent = 'Create Task';
     createTaskButton.addEventListener('click', () => {
-        Dom.showWindow(inputWindow.task())
+        Dom.showPopUp(inputWindow.task())
     });
 
     return [ logo, projectsTab, calendarTab, contactinfoTab, createTaskButton ]

@@ -7,31 +7,44 @@ export default { project, task };
 const defaultPopUp = document.createElement('form');
 defaultPopUp.id = 'popUp';
 
+function header(title) {
+    const headerTitle = document.createElement('h3');
+    const exitButton = document.createElement('button');
+    const header = Dom.wrapInDiv(headerTitle, exitButton);
+    header.classList = 'popUp-header';
+    headerTitle.textContent = title;
+    exitButton.textContent = 'X';
+    exitButton.classList = 'exit-button';
+    exitButton.addEventListener('click', (event) => Dom.closePopUp(event));
+
+    return header;
+}
+
 function project() {
     if (!Dom.popUpState.isShown()) {
         const popUp = defaultPopUp;
-    popUp.classList.add('project-popUp')};
+    popUp.classList.add('project-popUp');
 
     function inputFields() {
-        
+        const popUpHeader = header('Create Project');
+
+        return [ popUpHeader ]//array of input field elements
+    }
+
+    Dom.appendElement(popUp, inputFields());
+
+    return popUp;//element
     }
 }
 
 function task() {
     if (!Dom.popUpState.isShown()) {
-        const popUp = defaultPopUp;
+    const popUp = defaultPopUp;
     popUp.classList.add('task-popUp');
 
     function inputFields() {
-        const headerTitle = document.createElement('h3');
-        const exitButton = document.createElement('button');
-        const header = Dom.wrapInDiv(headerTitle, exitButton);
-        header.classList = 'popUp-header';
-        headerTitle.textContent = 'Create Task';
-        exitButton.textContent = 'X';
-        exitButton.classList = 'exit-button';
-        exitButton.addEventListener('click', Dom.closepopUp);
-        
+        const popUpHeader = header('Create Task');
+
         const titleLabel = Dom.createBasicLabel('Title:', 'task-title-input');
         const titleInput = Dom.createBasicInput('text', 'task-title-input', 'task-title-input');
         const title = Dom.wrapInDiv(titleLabel, titleInput);
@@ -62,11 +75,10 @@ function task() {
         submitButton.classList = 'submit-button';
         submitButton.textContent = 'Submit';
         submitButton.addEventListener('click', () => {
-            const currentProject = projectManagement.getCurrentProject();
-            taskManagement.createTask(titleInput.value, dueDateInput.value, description.value, priorityInput.value, notesInput.value);
+            // taskManagement.createTask(titleInput.value, dueDateInput.value, description.value, priorityInput.value, notesInput.value);
         });
 
-        return [ header, title, dueDate, description, priority, notes, submitButton ]//array of input field elements
+        return [ popUpHeader, title, dueDate, description, priority, notes, submitButton ]//array of input field elements
     }
 
     Dom.appendElement(popUp, inputFields());
