@@ -2,25 +2,35 @@ import Dom from '../modules/DOMInteraction.js';
 import projectManagement from '../modules/projectManagement.js';
 import taskManagement from '../modules/taskManagement.js';
 
-export default { task };
+export default { project, task };
 
-const defaultWindow = document.createElement('form');
-defaultWindow.id = 'window';
+const defaultPopUp = document.createElement('form');
+defaultPopUp.id = 'popUp';
+
+function project() {
+    if (!Dom.popUpState.isShown()) {
+        const popUp = defaultPopUp;
+    popUp.classList.add('project-popUp')};
+
+    function inputFields() {
+        
+    }
+}
 
 function task() {
-    if (!Dom.windowState.isShown()) {
-        const window = defaultWindow;
-    window.classList.add('task-window');
+    if (!Dom.popUpState.isShown()) {
+        const popUp = defaultPopUp;
+    popUp.classList.add('task-popUp');
 
     function inputFields() {
         const headerTitle = document.createElement('h3');
         const exitButton = document.createElement('button');
         const header = Dom.wrapInDiv(headerTitle, exitButton);
-        header.classList = 'window-header';
+        header.classList = 'popUp-header';
         headerTitle.textContent = 'Create Task';
         exitButton.textContent = 'X';
         exitButton.classList = 'exit-button';
-        exitButton.addEventListener('click', Dom.closeWindow);
+        exitButton.addEventListener('click', Dom.closepopUp);
         
         const titleLabel = Dom.createBasicLabel('Title:', 'task-title-input');
         const titleInput = Dom.createBasicInput('text', 'task-title-input', 'task-title-input');
@@ -59,8 +69,8 @@ function task() {
         return [ header, title, dueDate, description, priority, notes, submitButton ]//array of input field elements
     }
 
-    Dom.appendElement(window, inputFields());
+    Dom.appendElement(popUp, inputFields());
 
-    return window;//element
+    return popUp;//element
     }
 }
