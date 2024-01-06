@@ -2,7 +2,9 @@ import Dom from '../modules/DOMInteraction';
 import popUp from './popUp';
 import projectWidgets from './projectWidget';
 
-export default function() {
+export default { projectBar }
+
+function projectBar() {
     const projectBar = document.createElement('div');
     projectBar.id = 'side-bar';
 
@@ -22,13 +24,18 @@ function createProjectBar() {
     const projectWidgetContainer = document.createElement('div');
     projectWidgetContainer.classList = 'project-widget-container';
 
-    Dom.appendElement(projectWidgetContainer, projectWidgets())
-
-    
+    Dom.appendElement(projectWidgetContainer, projectWidgets.constructWidgets())
 
     return [ createProjectButton, projectWidgetContainer ]
 }
 
 //will need function to insert new projectWidget component
+function displayProjectWidgets() {
+
+}
+
+function refreshWidgets() {
+
+}
 
 //side bar to contain separate project tabs

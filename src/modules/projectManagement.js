@@ -1,10 +1,14 @@
+export default { getProjects };
 
-
-const projects = {1: {name: 'default'}};
+const projects = [{Id: 1, name: 'Default'}];
 let projectsCounter = 1;
 
 function createProject(name) {
     projects[`${projectsCounter}`] = {name};
+}
+
+function getProjects() {
+    return projects;
 }
 //must have an Id property that is shared with corresponding todo's
 
