@@ -10,7 +10,11 @@ function generateWidgets() {
     const projectWidgets = keys.map( (projectKey) => {
         const projectWidget = document.createElement('div');
         
-        projectWidget.classList = 'project-widget';
+        if (projectData.getCurrentProjectNum() == projectKey) {
+            projectWidget.classList = 'project-widget selected';
+        } else {
+            projectWidget.classList = 'project-widget';
+        }
         projectWidget.textContent = projects[`${projectKey}`][`title`];
         //data id identifier used to get object 
         projectWidget.id = projectKey;
@@ -21,6 +25,8 @@ function generateWidgets() {
             
             const selectedWidget = event.target;
             selectedWidget.classList = 'project-widget selected';
+
+            projectData.setCurrentProject(event.target.id)
         })
 
         return projectWidget;
