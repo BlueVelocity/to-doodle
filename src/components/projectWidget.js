@@ -15,6 +15,14 @@ function generateWidgets() {
         //data id identifier used to get object 
         projectWidget.id = projectKey;
 
+        projectWidget.addEventListener('click', (event) => {
+            const projectWidgets = document.querySelectorAll('.project-widget');
+            projectWidgets.forEach( element => element.classList = 'project-widget');
+            
+            const selectedWidget = event.target;
+            selectedWidget.classList = 'project-widget selected';
+        })
+
         return projectWidget;
     })
 

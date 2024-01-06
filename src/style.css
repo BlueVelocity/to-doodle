@@ -149,6 +149,10 @@ input {
 	grid-template-rows: max(4rem, 40px) 1fr;
 }
 
+.selected { 
+	outline: black 2px solid;
+}
+
 #nav-bar {
 	grid-area: var(--area-one);
 
