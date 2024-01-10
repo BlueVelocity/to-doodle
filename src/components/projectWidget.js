@@ -56,7 +56,7 @@ function generateWidgets() {
             projectBar.regenerateProjects();
         })
 
-        Dom.appendElement(projectWidget, [ title, deleteButton ])
+        Dom.appendElement(projectWidget, [ deleteButton, title ])
 
         return projectWidget;
     })

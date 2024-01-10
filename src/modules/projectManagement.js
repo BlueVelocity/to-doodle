@@ -44,4 +44,4 @@ function deleteProjectById(id) {
 }
 
 //creates default project
-createProject('Task A');
+createProject('Project A');
