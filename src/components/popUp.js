@@ -6,7 +6,7 @@ import taskContent from './taskContent.js';
 
 export default { project, task };
 
-const defaultPopUp = document.createElement('form');
+const defaultPopUp = document.createElement('div');
 defaultPopUp.id = 'popUp';
 
 function header(title) {
@@ -30,7 +30,6 @@ function submitButton() {
 
     submitButton.addEventListener('click', (event) => Dom.closePopUp(event));
 
-
     return submitButton;
 }
 
@@ -48,11 +47,15 @@ function project() {
 
         const submitBtn = submitButton(titleInput.value);
         submitBtn.addEventListener('click', () => {
-            projectManagement.createProject(titleInput.value)
+            projectManagement.createProject(titleInput.value);
             projectBar.regenerateProjects();
         });
 
-        return [ popUpHeader, title, submitBtn ]//array of input field elements
+        //insert all form elements into form
+        const form = document.createElement('form');
+        Dom.appendElement(form, [ title, submitBtn ])
+
+        return [ popUpHeader, form ]//array of input field elements
     }
 
     Dom.appendElement(popUp, inputFields());
@@ -68,7 +71,7 @@ function task() {
 
     function inputFields() {
         const popUpHeader = header('Create Task');
-
+        
         const titleLabel = Dom.createBasicLabel('Title:', 'task-title-input');
         const titleInput = Dom.createBasicInput('text', 'task-title-input', 'task-title-input');
         const title = Dom.wrapInDiv(titleLabel, titleInput);
@@ -100,7 +103,18 @@ function task() {
             taskContent.loadProjectTasks();
         });
 
-        return [ popUpHeader, title, dueDate, description, priority, notes, submitBtn ]//array of input field elements
+        submitBtn.addEventListener('keydown', event => {
+            if (event.key = 'Enter') {
+                taskManagement.createTask(titleInput.value, dueDateInput.value, descriptionInput.value, priorityInput.value, notesInput.value);
+                taskContent.loadProjectTasks();
+            }
+        })
+
+        //insert all form elements into form
+        const form = document.createElement('form');
+        Dom.appendElement(form, [ title, dueDate, description, priority, notes, submitBtn ])
+
+        return [ popUpHeader, form ]//array of input field elements
     }
 
     Dom.appendElement(popUp, inputFields());

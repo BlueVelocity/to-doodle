@@ -350,14 +350,19 @@ input {
 	background-color: var(--main-color);
 }
 
-#popUp > div {
+#popUp form {
+	display: flex;
+	flex-direction: column;
+}
+
+#popUp form > div {
 	display: grid;
 	grid-template-columns: 1fr 2fr;
 	align-items: center;
 	justify-items: center;
 }
 
-#popUp div > * {
+#popUp form > div > * {
 	display: flex;
 	margin: 0.2rem;
 	align-items: center;
@@ -392,6 +397,7 @@ input {
 #popUp input {
 	width: 100%;
 	padding: 1px;
+	margin: 1px;
 }
 
 #popUp .popUp-header button:active {
