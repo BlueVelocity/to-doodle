@@ -50,6 +50,7 @@ function generateWidgets() {
                 if (Object.keys(projectData.getProjects()).length > 0 && event.target.parentElement.getAttribute('id') ) {
                     const projectsKeys = Object.keys(projectData.getProjects());
                     projectData.setCurrentProject(projectsKeys[projectsKeys.length -1]);
+                    taskContent.loadProjectTasks();
                 }
             }
             projectBar.regenerateProjects();
