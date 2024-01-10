@@ -31,7 +31,7 @@ function generateWidgetElement() {
 }
 
 function loadWidgets(projectId) {
-        return generateWidgetElement(1);
+        return generateWidgetElement(2);
         //create DOM elements that display:
 
         //taskData.title

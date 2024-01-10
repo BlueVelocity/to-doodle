@@ -95,7 +95,7 @@ function task() {
 
         const submitBtn = submitButton();
         submitBtn.addEventListener('click', () => {
-            // taskManagement.createTask(titleInput.value, dueDateInput.value, description.value, priorityInput.value, notesInput.value);
+            taskManagement.createTask(titleInput.value, dueDateInput.value, descriptionInput.value, priorityInput.value, notesInput.value);
         });
 
         return [ popUpHeader, title, dueDate, description, priority, notes, submitBtn ]//array of input field elements
