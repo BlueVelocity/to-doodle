@@ -265,6 +265,10 @@ input {
 	background-color: var(--note-select-color);
 }
 
+.project-widget > p {
+	pointer-events: none;
+}
+
 .main-content {
 	grid-area: var(--area-three);
 
