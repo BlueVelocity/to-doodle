@@ -1,3 +1,5 @@
+import task from './taskManagement';
+
 export default { setCurrentProject, setCurrentToLastProject, getProjects, getCurrentProjectNum, createProject, addTaskToProject, deleteProjectById };
 
 const projects = {};
@@ -43,5 +45,6 @@ function deleteProjectById(id) {
     console.log(`Project with ID no. ${id} deleted`);
 }
 
-//creates default project
+//creates default project and task
 createProject('Project A');
+task.createTask('Example Task', '2100-12-30', 'This is the task\'s description', '1', 'This is the task\'s notes')

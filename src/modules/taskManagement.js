@@ -23,15 +23,19 @@ function validateInputs(title, dueDate, description, priority, notes) {
     }
 
     function checkDescription(desc) {
-        return !!desc;
+        return true;
     }
 
     function checkPriority(priority) {
-        return !!priority;
+        if (priority >= 1 && priority <= 5) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     function checkNotes(notes) {
-        return !!notes;
+        return true;
     }
 
     return ![checkTitle(title), checkDueDate(dueDate), checkDescription(description), 
@@ -50,5 +54,3 @@ function createTask(title, dueDate, description, priority, notes) {
         console.log('Form filled out improperly!')
     }
 }
-
-// will display the information contained within the todo (title, description, dueDate, priority, notes, checklist, and a drawing(?))
