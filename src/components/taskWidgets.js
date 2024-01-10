@@ -20,7 +20,12 @@ function generateWidgetElement(task) {
         checkBox.textContent = 'checkBox';
     
         const deleteButton = document.createElement('button');
+        deleteButton.classList = 'delete-button';
         deleteButton.textContent = 'Delete';
+
+        deleteButton.addEventListener('click', event => {
+            event.stopPropagation()
+        })
 
         return [ title, dueDate, checkBox, deleteButton ]
     }

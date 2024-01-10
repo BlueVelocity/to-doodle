@@ -103,13 +103,6 @@ function task() {
             taskContent.loadProjectTasks();
         });
 
-        submitBtn.addEventListener('keydown', event => {
-            if (event.key = 'Enter') {
-                taskManagement.createTask(titleInput.value, dueDateInput.value, descriptionInput.value, priorityInput.value, notesInput.value);
-                taskContent.loadProjectTasks();
-            }
-        })
-
         //insert all form elements into form
         const form = document.createElement('form');
         Dom.appendElement(form, [ title, dueDate, description, priority, notes, submitBtn ])

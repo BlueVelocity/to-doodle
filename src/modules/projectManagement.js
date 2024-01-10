@@ -1,4 +1,4 @@
-export default { setCurrentProject, getProjects, getCurrentProjectNum, createProject, addTaskToProject };
+export default { setCurrentProject, getProjects, getCurrentProjectNum, createProject, addTaskToProject, deleteProjectById };
 
 const projects = {};
 let projectsCounter = 1;
@@ -28,6 +28,11 @@ function setCurrentProject(projNum) {
 
 function addTaskToProject(projectId, task) {
     projects[`${projectId}`].tasks.push(task);
+}
+
+function deleteProjectById(id) {
+    delete projects[`${id}`];
+    console.log(`Project with ID no. ${id} deleted`);
 }
 
 //creates default project

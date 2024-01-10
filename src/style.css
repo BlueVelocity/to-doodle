@@ -129,6 +129,20 @@ button:active {
 	box-shadow: inset 0.05rem 0.05rem 0.05rem;
 }
 
+button:hover {
+	cursor: pointer;
+}
+
+.delete-button {
+	background-color: red;
+}
+
+.delete-button:active {
+	background-color: darkred;
+
+	box-shadow: inset 0.05rem 0.05rem 0.05rem;
+}
+
 h3 {
 	font-size: 1.5rem;
 	font-weight: bold;
@@ -228,17 +242,17 @@ input {
 
 .project-widget {
 	width: 90%;
-	aspect-ratio: 3 / 2;
+	aspect-ratio: 4 / 2;
 
 	margin: 1rem auto;
 
 	border-radius: 1rem;
 	box-shadow: darkgrey 1px 1px 1px;
 
-	display: flex;
-	justify-content: center;
+	display: grid;
+	grid-template-rows: 1.5fr 1fr;
 	align-items: center;
-	text-align: center;
+	justify-items: center;
 
 	font-size: 1.5rem;
 
@@ -313,7 +327,6 @@ input {
 
 .task-widget button {
 	justify-self: right;
-	background-color: red;
 }
 
 .task-widget button:last-child {
