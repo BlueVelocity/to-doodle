@@ -1,7 +1,6 @@
 import Dom from '../modules/DOMInteraction';
 import popUp from './popUp';
 import projectWidgets from './projectWidget';
-import projectData from '../modules/projectManagement';
 
 export default { firstLoad, regenerateProjects }
 

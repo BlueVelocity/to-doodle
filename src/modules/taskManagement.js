@@ -41,7 +41,9 @@ function validateInputs(title, dueDate, description, priority, notes) {
 function createTask(title, dueDate, description, priority, notes) {
     const creationDate = format(new Date(), "yyyy-MM-dd");
 
-    if (validateInputs(title, dueDate, description, priority, notes)) {
+    if (Object.keys(projectData.getProjects()).length === 0) {
+        console.log('Error: No projects, can\'t create task');
+    } else if (validateInputs(title, dueDate, description, priority, notes)) {
         const currentProjectId = projectData.getCurrentProjectNum()
         projectData.addTaskToProject(currentProjectId, { title, creationDate, dueDate, description, priority, notes, currentProjectId });
     } else {

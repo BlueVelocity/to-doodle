@@ -1,6 +1,7 @@
 import Dom from '../modules/DOMInteraction.js';
 import taskWidgets from './taskWidgets.js';
 import taskInformation from './taskInformation.js';
+import projectData from '../modules/projectManagement.js';
 
 export default { firstLoad, clearWidgets, loadProjectTasks };
 
@@ -31,6 +32,10 @@ function clearWidgets() {
 
 function loadProjectTasks() {
     clearWidgets();
-    const taskWidgetsContainer = document.querySelector('.task-widget-container');
-    Dom.appendElement(taskWidgetsContainer, taskWidgets.generateProjectWidgets());
+    if (Object.keys(projectData.getProjects()).length != 0) {
+        const taskWidgetsContainer = document.querySelector('.task-widget-container');
+        Dom.appendElement(taskWidgetsContainer, taskWidgets.generateProjectWidgets());
+    } else {
+        console.log('Error: No projects to load task into');
+    }
 }
