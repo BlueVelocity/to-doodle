@@ -279,6 +279,7 @@ input {
 
 .project-widget button > img {
 	width: 100%;
+	pointer-events: none;
 }
 
 .main-content {
