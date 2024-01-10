@@ -3,6 +3,8 @@ import projectData from './projectManagement';
 
 export default { createTask };
 
+let taskIdCounter = 1;
+
 function validateInputs(title, dueDate, description, priority, notes) {
     function checkTitle(title) {
         if ( title.length > 0 && title.length <= 28) {
@@ -49,7 +51,8 @@ function createTask(title, dueDate, description, priority, notes) {
         console.log('Error: No projects, can\'t create task');
     } else if (validateInputs(title, dueDate, description, priority, notes)) {
         const currentProjectId = projectData.getCurrentProjectNum()
-        projectData.addTaskToProject(currentProjectId, { title, creationDate, dueDate, description, priority, notes, currentProjectId });
+        projectData.addTaskToProject(currentProjectId, { title, creationDate, dueDate, description, priority, notes, taskId: taskIdCounter });
+        taskIdCounter++;
     } else {
         console.log('Form filled out improperly!')
     }

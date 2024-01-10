@@ -5,8 +5,8 @@ import projectData from '../modules/projectManagement.js';
 export default { generateProjectWidgets }
 
 function generateWidgetElement(task) {
-    const widget = document.createElement('div');
-    widget.classList = 'task-widget';
+    const taskWidget = document.createElement('div');
+    taskWidget.classList = 'task-widget';
 
     function generateWidgetContent() {
         const title = document.createElement('p');
@@ -30,16 +30,37 @@ function generateWidgetElement(task) {
         return [ title, dueDate, checkBox, deleteButton ]
     }
 
-    Dom.appendElement(widget, generateWidgetContent());
+    taskWidget.addEventListener('click', (event) => {
+        const taskWidgets = document.querySelectorAll('.task-widget');
+        taskWidgets.forEach( element => element.classList = 'task-widget');
+        
+        const selectedWidget = event.target;
+        selectedWidget.classList = 'task-widget selected';
 
-    return widget;
+        // projectData.setCurrentProject(event.target.id);
+        // taskContent.loadProjectTasks(event.target.id);
+    })
+
+    Dom.appendElement(taskWidget, generateWidgetContent());
+
+    return taskWidget;
 }
 
 function generateProjectWidgets() {
     const projects = projectData.getProjects();
-    return projects[`${projectData.getCurrentProjectNum()}`].tasks.map( (task) => {
+    const tasks = projects[`${projectData.getCurrentProjectNum()}`].tasks.map( (task) => {
         return generateWidgetElement(task);
     });
+
+    if (tasks.length > 0) {
+        tasks[0].classList = 'task-widget selected';
+    }
+    
+    return tasks
+}
+
+function loadTaskInformation() {
+
 }
 
 //will display the title and date of the todo, along wih an edit and delete button

@@ -261,7 +261,8 @@ input {
 	background-color: var(--note-color);
 }
 
-.project-widget:active {
+.project-widget:active,
+.task-widget:active {
 	background-color: var(--note-select-color);
 }
 
