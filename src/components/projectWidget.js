@@ -43,11 +43,17 @@ function generateWidgets() {
         deleteButton.addEventListener('click', event => {
             event.stopPropagation();
             projectData.deleteProjectById(event.target.parentElement.getAttribute('id'));
-            projectBar.regenerateProjects();
 
             if (event.target.parentElement.getAttribute('id') === projectData.getCurrentProjectNum()) {
                 taskContent.clearWidgets();
+
+                if (Object.keys(projectData.getProjects()).length > 1 && event.target.parentElement.getAttribute('id') ) {
+                    const projectsKeys = Object.keys(projectData.getProjects());
+                    projectData.setCurrentProject(projectsKeys[projectsKeys.length -1]);
+                }
             }
+
+            projectBar.regenerateProjects();
         })
 
         Dom.appendElement(projectWidget, [ title, deleteButton ])

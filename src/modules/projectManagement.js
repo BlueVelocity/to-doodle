@@ -1,4 +1,4 @@
-export default { setCurrentProject, getProjects, getCurrentProjectNum, createProject, addTaskToProject, deleteProjectById };
+export default { setCurrentProject, setCurrentToLastProject, getProjects, getCurrentProjectNum, createProject, addTaskToProject, deleteProjectById };
 
 const projects = {};
 let projectsCounter = 1;
@@ -28,6 +28,10 @@ function setCurrentProject(projNum) {
     } else {
         console.log('Error: project number does not exist');
     }
+}
+
+function setCurrentToLastProject() {
+    setCurrentProject(Object.keys(projects)[-1])
 }
 
 function addTaskToProject(projectId, task) {
