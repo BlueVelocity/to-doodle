@@ -12,15 +12,13 @@ function generateWidgets() {
 
     const projectWidgets = keys.map( (projectKey) => {
         const projectWidget = document.createElement('div');
-        
+        projectWidget.id = projectKey;
+
         if (projectData.getCurrentProjectNum() == projectKey) {
             projectWidget.classList = 'project-widget selected';
         } else {
             projectWidget.classList = 'project-widget';
         }
-        projectWidget.textContent = projects[`${projectKey}`][`title`];
-        //data id identifier used to get object 
-        projectWidget.id = projectKey;
 
         projectWidget.addEventListener('click', (event) => {
             const projectWidgets = document.querySelectorAll('.project-widget');
@@ -32,6 +30,9 @@ function generateWidgets() {
             projectData.setCurrentProject(event.target.id);
             taskContent.loadProjectTasks(event.target.id);
         })
+
+        const title = document.createElement('p');
+        title.textContent = projects[`${projectKey}`][`title`];
 
         //delete button attached to widget
         const deleteButton = document.createElement('button');
@@ -49,7 +50,7 @@ function generateWidgets() {
             }
         })
 
-        Dom.appendElement(projectWidget, [ deleteButton ])
+        Dom.appendElement(projectWidget, [ title, deleteButton ])
 
         return projectWidget;
     })

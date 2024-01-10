@@ -214,7 +214,7 @@ input {
 	justify-content: start;
 	align-items: center;
 
-	padding: 1rem 0 0 0;
+	padding: 0.5rem;
 
 	overflow-y: auto;
 
@@ -240,21 +240,23 @@ input {
 	background-color: var(--secondary-color);
 }
 
-.project-widget {
-	width: 90%;
-	aspect-ratio: 4 / 2;
-
-	margin: 1rem auto;
+.project-widget {	
+	margin: 0.5rem;
+	padding: 0.5rem;
 
 	border-radius: 1rem;
 	box-shadow: darkgrey 1px 1px 1px;
 
 	display: grid;
-	grid-template-rows: 1.5fr 1fr;
+	grid-template-rows: 1fr 2.5rem;
 	align-items: center;
 	justify-items: center;
+	text-align: center;
 
 	font-size: 1.5rem;
+
+	overflow: hidden;
+	word-break: break-all;
 
 	background-color: var(--note-color);
 }

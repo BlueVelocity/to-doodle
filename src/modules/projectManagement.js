@@ -5,6 +5,10 @@ let projectsCounter = 1;
 let currentProject = 1;
 
 function createProject(title) {
+    if (Object.keys(projects).length === 0) {
+        currentProject = projectsCounter;
+    }
+
     projects[`${projectsCounter}`] = { title, tasks: [] }
     projectsCounter++;
 }
@@ -36,4 +40,4 @@ function deleteProjectById(id) {
 }
 
 //creates default project
-createProject('default');
+createProject('Task A');
