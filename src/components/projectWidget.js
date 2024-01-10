@@ -47,7 +47,7 @@ function generateWidgets() {
             if (event.target.parentElement.getAttribute('id') === projectData.getCurrentProjectNum()) {
                 taskContent.clearWidgets();
 
-                if (Object.keys(projectData.getProjects()).length > 1 && event.target.parentElement.getAttribute('id') ) {
+                if (Object.keys(projectData.getProjects()).length > 0 && event.target.parentElement.getAttribute('id') ) {
                     const projectsKeys = Object.keys(projectData.getProjects());
                     projectData.setCurrentProject(projectsKeys[projectsKeys.length -1]);
                 }
