@@ -5,7 +5,7 @@ export default { createTask };
 
 function validateInputs(title, dueDate, description, priority, notes) {
     function checkTitle(title) {
-        if ( title.length > 4) {
+        if ( title.length > 0 && title.length <= 28) {
             return true;
         } else {
             return false;

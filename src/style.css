@@ -248,7 +248,7 @@ input {
 	box-shadow: darkgrey 1px 1px 1px;
 
 	display: grid;
-	grid-template-columns: 3.5rem 1fr;
+	grid-template-columns: 2.5rem 1fr;
 	align-items: center;
 	justify-items: center;
 	text-align: center;
@@ -272,9 +272,13 @@ input {
 
 .project-widget button {
 	height: 100%;
-
+	width: 100%;
 	box-shadow: none;
 	border-radius: 0;
+}
+
+.project-widget button > img {
+	width: 100%;
 }
 
 .main-content {
@@ -311,7 +315,7 @@ input {
 
 .task-widget {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 3fr;
+	grid-template-columns: 1fr 5rem 2rem 4rem;
 
 	align-items: center;
 	justify-items: left;
@@ -337,10 +341,6 @@ input {
 .task-widget input {
 	width: 1rem;
 	height: 1rem;
-}
-
-.task-widget button {
-	justify-self: right;
 }
 
 .task-widget button:last-child {

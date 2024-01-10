@@ -2,6 +2,7 @@ import Dom from '../modules/DOMInteraction';
 import projectBar from './projectBar';
 import taskContent from './taskContent';
 import projectData from '../modules/projectManagement';
+import trashIcon from '../icons/garbage_3234849.png';
 
 export default { generateWidgets }
 
@@ -38,7 +39,10 @@ function generateWidgets() {
         const deleteButton = document.createElement('button');
         deleteButton.type = 'button';
         deleteButton.classList = 'delete-button';
-        deleteButton.textContent = 'Delete';
+
+        const img = new Image();
+        img.src = trashIcon;
+        deleteButton.appendChild(img);
 
         deleteButton.addEventListener('click', event => {
             event.stopPropagation();
