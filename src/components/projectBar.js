@@ -2,12 +2,12 @@ import Dom from '../modules/DOMInteraction';
 import popUp from './popUp';
 import projectWidgets from './projectWidget';
 
-export default { projectBar, regenerateProjects }
+export default { firstLoad, regenerateProjects }
 
 const projectWidgetContainer = document.createElement('div');
 projectWidgetContainer.classList = 'project-widget-container';
 
-function projectBar() {
+function firstLoad() {
     const projectBar = document.createElement('div');
     projectBar.id = 'side-bar';
 

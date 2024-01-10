@@ -43,7 +43,7 @@ function createTask(title, dueDate, description, priority, notes) {
 
     if (validateInputs(title, dueDate, description, priority, notes)) {
         const currentProjectId = projectData.getCurrentProjectNum()
-        projectData.addTaskToProject(currentProjectId, { title, creationDate, dueDate, description, priority, notes });
+        projectData.addTaskToProject(currentProjectId, { title, creationDate, dueDate, description, priority, notes, currentProjectId });
     } else {
         console.log('Form filled out improperly!')
     }

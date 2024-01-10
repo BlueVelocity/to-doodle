@@ -2,6 +2,7 @@ import Dom from '../modules/DOMInteraction.js';
 import projectManagement from '../modules/projectManagement.js';
 import projectBar from './projectBar.js';
 import taskManagement from '../modules/taskManagement.js';
+import taskContent from './taskContent.js';
 
 export default { project, task };
 
@@ -96,6 +97,7 @@ function task() {
         const submitBtn = submitButton();
         submitBtn.addEventListener('click', () => {
             taskManagement.createTask(titleInput.value, dueDateInput.value, descriptionInput.value, priorityInput.value, notesInput.value);
+            taskContent.loadProjectTasks();
         });
 
         return [ popUpHeader, title, dueDate, description, priority, notes, submitBtn ]//array of input field elements

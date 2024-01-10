@@ -1,4 +1,5 @@
 import projectData from '../modules/projectManagement';
+import taskContent from './taskContent';
 
 export default { generateWidgets }
 
@@ -26,7 +27,8 @@ function generateWidgets() {
             const selectedWidget = event.target;
             selectedWidget.classList = 'project-widget selected';
 
-            projectData.setCurrentProject(event.target.id)
+            projectData.setCurrentProject(event.target.id);
+            taskContent.loadProjectTasks(event.target.id);
         })
 
         return projectWidget;

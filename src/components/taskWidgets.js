@@ -2,53 +2,39 @@ import Dom from '../modules/DOMInteraction.js';
 import taskData from '../modules/taskManagement.js';
 import projectData from '../modules/projectManagement.js';
 
-export default { loadWidgets }
+export default { generateProjectWidgets }
 
-function generateWidgetElement() {
+function generateWidgetElement(task) {
     const widget = document.createElement('div');
     widget.classList = 'task-widget';
 
-    function generateWidgetContent(taskId) {
+    function generateWidgetContent() {
         const title = document.createElement('p');
-        title.textContent = 'Title Working'
+        title.textContent = task.title;
 
         const dueDate = document.createElement('p');
-        dueDate.textContent = '00.00.00';
+        dueDate.textContent = task.dueDate;
     
-        const checkBox = Dom.createBasicInput('input', `task-${taskId}-completed`, `task-${taskId}-completed`)
+        const checkBox = Dom.createBasicInput('input', `task-completed`, `task-completed`)
         checkBox.type = 'checkbox';
-        checkBox.textContent = 'checkBox'
+        checkBox.textContent = 'checkBox';
     
         const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete'
+        deleteButton.textContent = 'Delete';
 
         return [ title, dueDate, checkBox, deleteButton ]
     }
 
-    Dom.appendElement(widget, generateWidgetContent())
+    Dom.appendElement(widget, generateWidgetContent());
 
-    return [ widget ];
+    return widget;
 }
 
-function loadWidgets(projectId) {
-        return generateWidgetElement(2);
-        //create DOM elements that display:
-
-        //taskData.title
-
-        //taskData.date
-
-        //taskData.checkbox (toggleable)
-
-        //create DOM elements and listeners that allow for interaction with:
-        //Todo view
-
-        //Todo edit
-
-        //Todo delete
-
-        //toDo.Id must be used
-        //needs to have the same data-project attribute as the project
+function generateProjectWidgets() {
+    const projects = projectData.getProjects();
+    return projects[`${projectData.getCurrentProjectNum()}`].tasks.map( (task) => {
+        return generateWidgetElement(task);
+    });
 }
 
 //will display the title and date of the todo, along wih an edit and delete button

@@ -8,6 +8,6 @@ const loadPage = (function() {
     const content = document.getElementById('content');
 
     content.appendChild(navBar());
-    content.appendChild(projectBar.projectBar());
-    content.appendChild(taskContent())
+    content.appendChild(projectBar.firstLoad());
+    content.appendChild(taskContent.firstLoad())
 })();

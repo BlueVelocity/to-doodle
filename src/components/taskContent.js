@@ -2,7 +2,9 @@ import Dom from '../modules/DOMInteraction.js';
 import taskWidgets from './taskWidgets.js';
 import taskInformation from './taskInformation.js';
 
-export default function() {
+export default { firstLoad, clearWidgets, loadProjectTasks };
+
+function firstLoad() {
     const mainContent = document.createElement('div');
     mainContent.classList = 'main-content';
 
@@ -14,11 +16,21 @@ export default function() {
 function createMainContent() {
     const taskWidgetsContainer = document.createElement('div');
     taskWidgetsContainer.classList = 'task-widget-container';
-    Dom.appendElement(taskWidgetsContainer, taskWidgets.loadWidgets());
+    Dom.appendElement(taskWidgetsContainer, taskWidgets.generateProjectWidgets());
 
     const taskInformationContainer = document.createElement('div');
     taskInformationContainer.classList = 'task-information-container';
 
     return [ taskWidgetsContainer, taskInformationContainer ]
 }
-//will show to do information under each project
+
+function clearWidgets() {
+    const taskWidgetsContainer = document.querySelector('.task-widget-container');
+    taskWidgetsContainer.innerHTML = '';
+}
+
+function loadProjectTasks() {
+    clearWidgets();
+    const taskWidgetsContainer = document.querySelector('.task-widget-container');
+    Dom.appendElement(taskWidgetsContainer, taskWidgets.generateProjectWidgets());
+}
