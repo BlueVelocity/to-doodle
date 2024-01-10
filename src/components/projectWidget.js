@@ -44,7 +44,7 @@ function generateWidgets() {
             event.stopPropagation();
             projectData.deleteProjectById(event.target.parentElement.getAttribute('id'));
 
-            if (event.target.parentElement.getAttribute('id') === projectData.getCurrentProjectNum()) {
+            if (event.target.parentElement.getAttribute('id') == projectData.getCurrentProjectNum()) {
                 taskContent.clearWidgets();
 
                 if (Object.keys(projectData.getProjects()).length > 0 && event.target.parentElement.getAttribute('id') ) {
@@ -52,7 +52,6 @@ function generateWidgets() {
                     projectData.setCurrentProject(projectsKeys[projectsKeys.length -1]);
                 }
             }
-
             projectBar.regenerateProjects();
         })
 
