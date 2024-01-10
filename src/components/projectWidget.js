@@ -1,7 +1,7 @@
 import Dom from '../modules/DOMInteraction';
 import projectBar from './projectBar';
-import projectData from '../modules/projectManagement';
 import taskContent from './taskContent';
+import projectData from '../modules/projectManagement';
 
 export default { generateWidgets }
 
@@ -43,6 +43,10 @@ function generateWidgets() {
             event.stopPropagation();
             projectData.deleteProjectById(event.target.parentElement.getAttribute('id'));
             projectBar.regenerateProjects();
+
+            if (event.target.parentElement.getAttribute('id') === projectData.getCurrentProjectNum()) {
+                taskContent.clearWidgets();
+            }
         })
 
         Dom.appendElement(projectWidget, [ deleteButton ])
