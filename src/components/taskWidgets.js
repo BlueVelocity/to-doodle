@@ -1,6 +1,7 @@
 import Dom from '../modules/DOMInteraction.js';
 import taskData from '../modules/taskManagement.js';
 import projectData from '../modules/projectManagement.js';
+import trashIcon from '../icons/garbage_3234849.png';
 
 export default { generateProjectWidgets }
 
@@ -21,7 +22,10 @@ function generateWidgetElement(task) {
     
         const deleteButton = document.createElement('button');
         deleteButton.classList = 'delete-button';
-        deleteButton.textContent = 'Delete';
+
+        const img = new Image();
+        img.src = trashIcon;
+        deleteButton.appendChild(img);
 
         deleteButton.addEventListener('click', event => {
             event.stopPropagation()
@@ -59,8 +63,8 @@ function generateProjectWidgets() {
     return tasks
 }
 
-function loadTaskInformation() {
-
+function loadCurrentTaskInformation() {
+    
 }
 
 //will display the title and date of the todo, along wih an edit and delete button

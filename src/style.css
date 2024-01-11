@@ -135,12 +135,20 @@ button:hover {
 
 .delete-button {
 	background-color: red;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .delete-button:active {
 	background-color: darkred;
 
 	box-shadow: inset 0.05rem 0.05rem 0.05rem;
+}
+
+.delete-button > img {
+	height: 100%;
+	align-self: center;
 }
 
 h3 {
@@ -280,6 +288,7 @@ input {
 
 .project-widget button > img {
 	width: 100%;
+	height: auto;
 	pointer-events: none;
 }
 
@@ -317,7 +326,7 @@ input {
 
 .task-widget {
 	display: grid;
-	grid-template-columns: 1fr 5rem 2rem 4rem;
+	grid-template-columns: 1fr 5rem 2rem 3rem;
 
 	align-items: center;
 	justify-items: left;
