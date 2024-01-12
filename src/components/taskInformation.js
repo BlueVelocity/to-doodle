@@ -2,6 +2,13 @@ import taskManagement from '../modules/taskManagement.js';
 
 export default function() {
 
+    const container = document.createElement('div');
+    container.classList = 'task-information-container';
+
+    function generateTaskInformation() {
+        const title = document.createElement('p');
+    }
+
     //create DOM elements that display:
     //ToDoData.title
     //ToDoData.date

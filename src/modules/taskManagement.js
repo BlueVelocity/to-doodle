@@ -1,9 +1,33 @@
 import { format, compareAsc } from 'date-fns';
 import projectData from './projectManagement';
 
-export default { createTask };
+export default { createTask, getCurrentTaskNum, setCurrentTaskNum, deleteTask };
 
 let taskIdCounter = 1;
+let currentTask = 1;
+
+function getCurrentTaskNum() {
+    return currentTask;
+}
+
+function checkIfIdIsPresent(taskArray, id) {
+    const taskIds = taskArray.map(task => task.taskId);
+    return (taskIds.includes(id));
+}
+
+function setCurrentTaskNum(id) {
+    if (checkIfIdIsPresent(((projectData.getProjects())[`${projectData.getCurrentProjectNum()}`].tasks), id)) {
+        currentTask = id; 
+    } else {
+        console.log('Error: Task not present in current project')
+    }
+}
+
+function deleteTask(id) {
+    projectData.deleteTaskFromProject(projectData.getCurrentProjectNum(), id);
+}
+
+
 
 function validateInputs(title, dueDate, description, priority, notes) {
     function checkTitle(title) {

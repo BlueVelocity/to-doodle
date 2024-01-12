@@ -2,12 +2,14 @@ import Dom from '../modules/DOMInteraction.js';
 import taskData from '../modules/taskManagement.js';
 import projectData from '../modules/projectManagement.js';
 import trashIcon from '../icons/garbage_3234849.png';
+import taskContent from './taskContent.js';
 
 export default { generateProjectWidgets }
 
 function generateWidgetElement(task) {
     const taskWidget = document.createElement('div');
     taskWidget.classList = 'task-widget';
+    taskWidget.setAttribute('data-task-id', `${task.taskId}`);
 
     function generateWidgetContent() {
         const title = document.createElement('p');
@@ -28,7 +30,9 @@ function generateWidgetElement(task) {
         deleteButton.appendChild(img);
 
         deleteButton.addEventListener('click', event => {
-            event.stopPropagation()
+            event.stopPropagation();
+            taskData.deleteTask(Number(event.target.parentElement.getAttribute('data-task-id')));
+            taskContent.removeTaskById(event.target.parentElement.getAttribute('data-task-id'));
         })
 
         return [ title, dueDate, checkBox, deleteButton ]

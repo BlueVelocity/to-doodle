@@ -3,7 +3,7 @@ import taskWidgets from './taskWidgets.js';
 import taskInformation from './taskInformation.js';
 import projectData from '../modules/projectManagement.js';
 
-export default { firstLoad, clearWidgets, loadProjectTasks };
+export default { firstLoad, clearWidgets, loadProjectTasks, removeTaskById };
 
 function firstLoad() {
     const mainContent = document.createElement('div');
@@ -38,4 +38,8 @@ function loadProjectTasks() {
     } else {
         console.log('Error: No projects to load task into');
     }
+}
+
+function removeTaskById(id) {
+    document.querySelector(`[data-task-id='${id}']`).outerHTML = '';
 }

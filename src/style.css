@@ -133,6 +133,10 @@ button:hover {
 	cursor: pointer;
 }
 
+img {
+	pointer-events: none;
+}
+
 .delete-button {
 	background-color: red;
 	display: flex;
@@ -289,7 +293,6 @@ input {
 .project-widget button > img {
 	width: 100%;
 	height: auto;
-	pointer-events: none;
 }
 
 .main-content {
