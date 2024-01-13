@@ -22,14 +22,16 @@ function generateWidgets() {
         }
 
         projectWidget.addEventListener('click', (event) => {
-            const projectWidgets = document.querySelectorAll('.project-widget');
-            projectWidgets.forEach( element => element.classList = 'project-widget');
-            
-            const selectedWidget = event.target;
-            selectedWidget.classList = 'project-widget selected';
-
-            projectData.setCurrentProject(event.target.id);
-            taskContent.loadProjectTasks(event.target.id);
+            if (!event.target.classList.contains('selected')) {
+                const projectWidgets = document.querySelectorAll('.project-widget');
+                projectWidgets.forEach( element => element.classList = 'project-widget');
+                
+                const selectedWidget = event.target;
+                selectedWidget.classList = 'project-widget selected';
+    
+                projectData.setCurrentProject(event.target.id);
+                taskContent.loadProjectTasks(event.target.id);
+            }
         })
 
         const title = document.createElement('p');
