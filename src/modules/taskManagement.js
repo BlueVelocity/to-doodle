@@ -17,7 +17,7 @@ function checkIfIdIsPresent(taskArray, id) {
 
 function setCurrentTaskNum(id) {
     if (checkIfIdIsPresent(((projectData.getProjects())[`${projectData.getCurrentProjectNum()}`].tasks), id)) {
-        currentTask = id; 
+        currentTask= id; 
     } else {
         console.log('Error: Task not present in current project')
     }
@@ -26,8 +26,6 @@ function setCurrentTaskNum(id) {
 function deleteTask(id) {
     projectData.deleteTaskFromProject(projectData.getCurrentProjectNum(), id);
 }
-
-
 
 function validateInputs(title, dueDate, description, priority, notes) {
     function checkTitle(title) {

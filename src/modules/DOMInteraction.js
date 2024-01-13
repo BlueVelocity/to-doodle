@@ -65,4 +65,8 @@ function wrapInDiv(...args) {
     return div;
 }
 
-export default { appendElement, popUpState, showPopUp, closePopUp, createBasicLabel, createBasicInput, wrapInDiv };
+function multiStopPropogation(...args) {
+    args.forEach(element => element.addEventListener('click', e => e.stopPropagation()))
+}
+
+export default { appendElement, popUpState, showPopUp, closePopUp, createBasicLabel, createBasicInput, wrapInDiv, multiStopPropogation };

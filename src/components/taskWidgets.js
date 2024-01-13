@@ -18,7 +18,7 @@ function generateWidgetElement(task) {
         const dueDate = document.createElement('p');
         dueDate.textContent = task.dueDate;
     
-        const checkBox = Dom.createBasicInput('input', `task-completed`, `task-completed`)
+        const checkBox = Dom.createBasicInput('input', `task-completed`, `task-completed`);
         checkBox.type = 'checkbox';
         checkBox.textContent = 'checkBox';
     
@@ -30,10 +30,12 @@ function generateWidgetElement(task) {
         deleteButton.appendChild(img);
 
         deleteButton.addEventListener('click', event => {
-            event.stopPropagation();
+            
             taskData.deleteTask(Number(event.target.parentElement.getAttribute('data-task-id')));
             taskContent.removeTaskById(event.target.parentElement.getAttribute('data-task-id'));
         })
+
+        Dom.multiStopPropogation(title, dueDate, checkBox, deleteButton);
 
         return [ title, dueDate, checkBox, deleteButton ]
     }
