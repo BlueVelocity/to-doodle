@@ -64,7 +64,7 @@ function deleteProjectById(id) {
 
 function projectTitleValidation(title) {
     const titleArray = title.split(' ');
-    return titleArray.some( value => value.length > 7);
+    return titleArray.some( value => value.length > 10);
 }
 
 //creates default project and task
