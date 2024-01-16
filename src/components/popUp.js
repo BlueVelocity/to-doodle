@@ -1,7 +1,7 @@
 import Dom from '../modules/DOMInteraction.js';
 import projectManagement from '../modules/projectManagement.js';
 import projectBar from './projectBar.js';
-import taskManagement from '../modules/taskManagement.js';
+import taskData from '../modules/taskManagement.js';
 import taskContent from './taskContent.js';
 
 export default { project, task };
@@ -28,8 +28,6 @@ function submitButton() {
     submitButton.classList = 'submit-button';
     submitButton.textContent = 'Submit';
 
-    submitButton.addEventListener('click', (event) => Dom.closePopUp(event));
-
     return submitButton;
 }
 
@@ -46,9 +44,11 @@ function project() {
         const title = Dom.wrapInDiv(titleLabel, titleInput);
 
         const submitBtn = submitButton(titleInput.value);
-        submitBtn.addEventListener('click', () => {
+        submitBtn.addEventListener('click', event => {
             projectManagement.createProject(titleInput.value);
             projectBar.regenerateProjects();
+
+            Dom.closePopUp(event)
         });
 
         //insert all form elements into form
@@ -98,9 +98,15 @@ function task() {
         const notes = Dom.wrapInDiv(notesLabel, notesInput);
 
         const submitBtn = submitButton();
-        submitBtn.addEventListener('click', () => {
-            taskManagement.createTask(titleInput.value, dueDateInput.value, descriptionInput.value, priorityInput.value, notesInput.value);
-            taskContent.loadProjectTasks();
+        submitBtn.addEventListener('click', event => {
+            if (taskData.validateInputs(titleInput.value, dueDateInput.value, descriptionInput.value, priorityInput.value, notesInput.value)) {
+                taskData.createTask(titleInput.value, dueDateInput.value, descriptionInput.value, priorityInput.value, notesInput.value);
+                taskContent.loadProjectTasks();
+
+                Dom.closePopUp(event);
+            } else {
+                alert(`Please ensure the title is less than 28 characters \nand the due date is beyond today's date`)
+            }
         });
 
         //insert all form elements into form
