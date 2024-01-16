@@ -1,5 +1,5 @@
 import Dom from '../modules/DOMInteraction.js';
-import projectManagement from '../modules/projectManagement.js';
+import projectData from '../modules/projectManagement.js';
 import projectBar from './projectBar.js';
 import taskData from '../modules/taskManagement.js';
 import taskContent from './taskContent.js';
@@ -45,10 +45,14 @@ function project() {
 
         const submitBtn = submitButton(titleInput.value);
         submitBtn.addEventListener('click', event => {
-            projectManagement.createProject(titleInput.value);
-            projectBar.regenerateProjects();
-
-            Dom.closePopUp(event)
+            if (projectData.projectTitleValidation(titleInput.value)) {
+                alert(`Your title contains a word that is too long and I don't like it\nMostly because it overflows my container\nDo better this time`)
+            } else {
+                projectData.createProject(titleInput.value);
+                projectBar.regenerateProjects();
+    
+                Dom.closePopUp(event)
+            }
         });
 
         //insert all form elements into form

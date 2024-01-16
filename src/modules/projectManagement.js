@@ -1,6 +1,7 @@
 import task from './taskManagement';
 
-export default { setCurrentProject, setCurrentToLastProject, getProjects, getCurrentProjectNum, createProject, getTaskById, addTaskToProject, getTaskCount, deleteTaskFromProject, deleteProjectById };
+export default { setCurrentProject, setCurrentToLastProject, getProjects, getCurrentProjectNum, createProject, getTaskById, 
+                addTaskToProject, getTaskCount, deleteTaskFromProject, deleteProjectById, projectTitleValidation };
 
 const projects = {};
 let projectsCounter = 1;
@@ -59,6 +60,11 @@ function getTaskCount(projectId) {
 function deleteProjectById(id) {
     delete projects[`${id}`];
     console.log(`Project with ID no. ${id} deleted`);
+}
+
+function projectTitleValidation(title) {
+    const titleArray = title.split(' ');
+    return titleArray.some( value => value.length > 7);
 }
 
 //creates default project and task
