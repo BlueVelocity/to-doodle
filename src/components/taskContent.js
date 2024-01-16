@@ -1,6 +1,5 @@
 import Dom from '../modules/DOMInteraction.js';
 import taskWidgets from './taskWidgets.js';
-import taskInformation from './taskInformation.js';
 import projectData from '../modules/projectManagement.js';
 
 export default { firstLoad, clearWidgets, loadProjectTasks, removeTaskById };
@@ -20,7 +19,7 @@ function createMainContent() {
     Dom.appendElement(taskWidgetsContainer, taskWidgets.generateProjectWidgets());
 
     const taskInformationContainer = document.createElement('div');
-    taskInformationContainer.classList = 'task-information-container';
+    taskInformationContainer.classList = 'task-information';
 
     return [ taskWidgetsContainer, taskInformationContainer ]
 }

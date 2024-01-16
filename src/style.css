@@ -73,10 +73,15 @@ table {
 	--area-two: 2 / 1 / 3 / 2;
 	--area-three: 2 / 2 / 3 / end;
 
+	max-width: 100%;
+
 	box-sizing: border-box;
 
     font-family: 'Roboto', sans-serif;
-	font-size: min((0.02 * var(--min-width)), 16px)
+	font-size: min((0.02 * var(--min-width)), 16px);
+
+	overflow: hidden;
+	word-break: normal;
 }
 
 *::-webkit-scrollbar {
@@ -137,14 +142,16 @@ img {
 	pointer-events: none;
 }
 
-.delete-button {
+.delete-button,
+.task-incomplete {
 	background-color: red;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.delete-button:active {
+.delete-button:active,
+.task-incomplete:active {
 	background-color: darkred;
 
 	box-shadow: inset 0.05rem 0.05rem 0.05rem;
@@ -355,18 +362,39 @@ input {
 .task-widget input {
 	width: 1rem;
 	height: 1rem;
+
+	cursor: pointer;
 }
 
 .task-widget button:last-child {
 	margin-left: auto;
 }
 
-.task-information-container{
+.task-information {	
 	margin: 0 1rem 1rem;
 
-	border-radius: 1rem;
-
 	background-color: var(--secondary-color);
+}
+
+.task-information > ul {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.task-information ul > *:not(:first-child) {
+	margin-top: 1rem;
+}
+
+.task-information .task-title {
+	font-weight: bold;
+	font-size: 1.2rem;
+}
+
+.task-information button {
+	width: 80%;
+	
+	align-self: center;
 }
 
 /* INPUT WINDOW */
@@ -442,7 +470,7 @@ input {
 }
 
 #popUp .popUp-header button:active {
-	background-color: #991b1b;
+	background-color: darkred;
 
 	box-shadow: inset 0.05rem 0.05rem 0.05rem black;
 }

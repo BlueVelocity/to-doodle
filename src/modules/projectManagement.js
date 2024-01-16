@@ -1,6 +1,6 @@
 import task from './taskManagement';
 
-export default { setCurrentProject, setCurrentToLastProject, getProjects, getCurrentProjectNum, createProject, addTaskToProject, getTaskCount, deleteTaskFromProject, deleteProjectById };
+export default { setCurrentProject, setCurrentToLastProject, getProjects, getCurrentProjectNum, createProject, getTaskById, addTaskToProject, getTaskCount, deleteTaskFromProject, deleteProjectById };
 
 const projects = {};
 let projectsCounter = 1;
@@ -36,13 +36,17 @@ function setCurrentToLastProject() {
     setCurrentProject(Object.keys(projects)[-1]);
 }
 
+function getTaskById(id) {;
+    return projects[`${currentProject}`].tasks.find( task => task.taskId === id);
+}
+
 function addTaskToProject(projectId, task) {
     projects[`${projectId}`].tasks.push(task);
 }
 
 function deleteTaskFromProject(projectId, taskId) {
     projects[`${projectId}`].tasks.forEach((task, index) => {
-        if (task.taskId = taskId) {
+        if (task.taskId === taskId) {
             delete projects[`${projectId}`].tasks.splice(index, 1);
         }
     })

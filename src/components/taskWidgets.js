@@ -3,8 +3,9 @@ import taskData from '../modules/taskManagement.js';
 import projectData from '../modules/projectManagement.js';
 import trashIcon from '../icons/garbage_3234849.png';
 import taskContent from './taskContent.js';
+import taskInfo from './taskInformation.js';
 
-export default { generateProjectWidgets }
+export default { generateProjectWidgets, checkCurrentCheckbox, uncheckCurrentCheckbox }
 
 function generateWidgetElement(task) {
     const taskWidget = document.createElement('div');
@@ -19,8 +20,32 @@ function generateWidgetElement(task) {
         dueDate.textContent = task.dueDate;
     
         const checkBox = Dom.createBasicInput('input', `task-completed`, `task-completed`);
+        checkBox.setAttribute('data-task-checkbox-id', task.taskId);
         checkBox.type = 'checkbox';
         checkBox.textContent = 'checkBox';
+        if (task.completed === true) {
+            checkBox.checked = true;
+        }
+
+        checkBox.addEventListener('click', event => {
+            if (projectData.getTaskById(Number(event.target.getAttribute('data-task-checkbox-id'))).completed === true) {
+                projectData.getTaskById(Number(event.target.getAttribute('data-task-checkbox-id'))).completed = false;
+                event.target.checked = false;
+                if (Number(event.target.parentElement.getAttribute('data-task-id')) === taskData.getCurrentTaskNum()) {
+                    const taskCompleteButton = document.getElementById('task-complete-button');
+                    taskCompleteButton.textContent = 'Incomplete';
+                    taskCompleteButton.classList = 'task-incomplete';
+                }
+            } else if (projectData.getTaskById(Number(event.target.getAttribute('data-task-checkbox-id'))).completed === false) {
+                projectData.getTaskById(Number(event.target.getAttribute('data-task-checkbox-id'))).completed = true;
+                event.target.checked = true;
+                if (Number(event.target.parentElement.getAttribute('data-task-id')) === taskData.getCurrentTaskNum()) {
+                    const taskCompleteButton = document.getElementById('task-complete-button');
+                    taskCompleteButton.textContent = 'Complete';
+                    taskCompleteButton.classList = '';
+                }
+            }
+        })
     
         const deleteButton = document.createElement('button');
         deleteButton.classList = 'delete-button';
@@ -30,9 +55,14 @@ function generateWidgetElement(task) {
         deleteButton.appendChild(img);
 
         deleteButton.addEventListener('click', event => {
+            const widgetTaskId = Number(event.target.parentElement.getAttribute('data-task-id'))
             
-            taskData.deleteTask(Number(event.target.parentElement.getAttribute('data-task-id')));
+            taskData.deleteTask(widgetTaskId);
             taskContent.removeTaskById(event.target.parentElement.getAttribute('data-task-id'));
+
+            if (widgetTaskId === taskData.getCurrentTaskNum()) {
+                taskInfo.removeTaskInfo();
+            }
         })
 
         Dom.multiStopPropogation(title, dueDate, checkBox, deleteButton);
@@ -47,8 +77,10 @@ function generateWidgetElement(task) {
         const selectedWidget = event.target;
         selectedWidget.classList = 'task-widget selected';
 
-        // projectData.setCurrentProject(event.target.id);
-        // taskContent.loadProjectTasks(event.target.id);
+        taskData.setCurrentTask(Number(selectedWidget.getAttribute('data-task-id')))
+        console.log(taskData.getCurrentTaskNum())
+
+        taskInfo.showTaskInfo();
     })
 
     Dom.appendElement(taskWidget, generateWidgetContent());
@@ -69,8 +101,10 @@ function generateProjectWidgets() {
     return tasks
 }
 
-function loadCurrentTaskInformation() {
-    
+function checkCurrentCheckbox() {
+    document.querySelector(`[data-task-checkbox-id='${taskData.getCurrentTaskNum()}']`).checked = true;
 }
 
-//will display the title and date of the todo, along wih an edit and delete button
+function uncheckCurrentCheckbox() {
+    document.querySelector(`[data-task-checkbox-id='${taskData.getCurrentTaskNum()}']`).checked = false;
+}

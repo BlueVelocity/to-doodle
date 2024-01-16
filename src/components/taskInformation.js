@@ -1,31 +1,72 @@
-import taskManagement from '../modules/taskManagement.js';
+import Dom from '../modules/DOMInteraction.js';
+import taskData from '../modules/taskManagement.js';
+import taskWidgets from './taskWidgets.js';
 
-export default function() {
+export default { showTaskInfo, removeTaskInfo };
 
-    const container = document.createElement('div');
-    container.classList = 'task-information-container';
-
-    function generateTaskInformation() {
-        const title = document.createElement('p');
-    }
-
-    //create DOM elements that display:
-    //ToDoData.title
-    //ToDoData.date
-    //ToDoData.dueDate
-    //ToDoData.description
-    //ToDoData.priority
-    //ToDoData.notes
-    //ToDoData.check
-    //ToDoData Drawing??? Maybe
-
-    //create DOM elements that allow for interaction with:
-    //Todo view
-    //Todo edit
-    //Todo delete
-
-    return //as an array of elements
+function removeTaskInfo() {
+    const container = document.querySelector('.task-information');
+    container.innerHTML = '';
 }
 
+function showTaskInfo() {
+    let currentTask = taskData.getCurrentTask();
 
-//will display the information contained within the todo (title, description, dueDate, priority, notes, checklist, and a drawing(?))
+    const title = document.createElement('li');
+    title.classList = 'task-title';
+    title.textContent = currentTask.title;
+
+    const dateCreated = document.createElement('li');
+    dateCreated.textContent = `Date Created: ${currentTask.creationDate}`;
+
+    const dueDate = document.createElement('li');
+    dueDate.textContent = `Due: ${currentTask.dueDate}`;
+
+    const description = document.createElement('li');
+    if(currentTask.description === '') {
+        description.textContent = `Description: N/A`;
+    } else {
+        description.textContent = `Description: ${currentTask.description}`;
+    }
+
+    const priority = document.createElement('li');
+    priority.textContent = `Priority: ${currentTask.priority}`;
+
+    const notes = document.createElement('li');
+    if(currentTask.notes === '') {
+        notes.textContent = `Notes: N/A`;
+    } else {
+        notes.textContent = `Notes: ${currentTask.notes}`;
+    }
+
+    const completed = document.createElement('button');
+    completed.id = 'task-complete-button';
+    if(currentTask.completed === true) {
+        completed.textContent = 'Completed';
+    } else {
+        completed.textContent = 'Incomplete';
+        completed.classList = 'task-incomplete';
+    }
+
+    completed.addEventListener('click', event => {
+        if (event.target.classList.value === 'task-incomplete') {
+            completed.textContent = 'Completed';
+            currentTask.completed = true;
+            event.target.classList = '';
+            taskWidgets.checkCurrentCheckbox()
+        } else {
+            completed.textContent = 'Incomplete';
+            currentTask.completed = false;
+            event.target.classList = 'task-incomplete';
+            taskWidgets.uncheckCurrentCheckbox();
+        }
+    })
+
+    const container = document.querySelector('.task-information');
+    container.innerHTML = '';
+
+    const taskInfoList = document.createElement('ul');
+
+    Dom.appendElement(taskInfoList, [ title, dateCreated, dueDate, description, priority, notes, completed ])
+    container.appendChild(taskInfoList);    
+}

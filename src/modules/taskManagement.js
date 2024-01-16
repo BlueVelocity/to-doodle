@@ -1,10 +1,14 @@
 import { format, compareAsc } from 'date-fns';
 import projectData from './projectManagement';
 
-export default { createTask, getCurrentTaskNum, setCurrentTaskNum, deleteTask };
+export default { createTask, getCurrentTask, getCurrentTaskNum, setCurrentTask, deleteTask };
 
 let taskIdCounter = 1;
 let currentTask = 1;
+
+function getCurrentTask() {
+    return projectData.getTaskById(currentTask);
+}
 
 function getCurrentTaskNum() {
     return currentTask;
@@ -15,11 +19,11 @@ function checkIfIdIsPresent(taskArray, id) {
     return (taskIds.includes(id));
 }
 
-function setCurrentTaskNum(id) {
+function setCurrentTask(id) {
     if (checkIfIdIsPresent(((projectData.getProjects())[`${projectData.getCurrentProjectNum()}`].tasks), id)) {
         currentTask= id; 
     } else {
-        console.log('Error: Task not present in current project')
+        console.log(`Error: Task '${id}' not present in current project`)
     }
 }
 
@@ -73,7 +77,7 @@ function createTask(title, dueDate, description, priority, notes) {
         console.log('Error: No projects, can\'t create task');
     } else if (validateInputs(title, dueDate, description, priority, notes)) {
         const currentProjectId = projectData.getCurrentProjectNum()
-        projectData.addTaskToProject(currentProjectId, { title, creationDate, dueDate, description, priority, notes, taskId: taskIdCounter });
+        projectData.addTaskToProject(currentProjectId, { title, creationDate, dueDate, description, priority, notes, completed: false, taskId: taskIdCounter });
         taskIdCounter++;
     } else {
         console.log('Form filled out improperly!')

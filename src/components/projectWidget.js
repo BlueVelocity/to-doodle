@@ -1,8 +1,10 @@
 import Dom from '../modules/DOMInteraction';
 import projectBar from './projectBar';
 import taskContent from './taskContent';
+import taskInfo from './taskInformation';
 import projectData from '../modules/projectManagement';
 import trashIcon from '../icons/garbage_3234849.png';
+import taskManagement from '../modules/taskManagement';
 
 export default { generateWidgets }
 
@@ -31,6 +33,12 @@ function generateWidgets() {
     
                 projectData.setCurrentProject(event.target.id);
                 taskContent.loadProjectTasks(event.target.id);
+
+                taskInfo.removeTaskInfo();
+                if ((projectData.getProjects())[`${projectData.getCurrentProjectNum()}`].tasks.length != 0) {
+                    taskManagement.setCurrentTask((projectData.getProjects())[`${event.target.id}`].tasks[0].taskId);
+                    taskInfo.showTaskInfo();
+                }
             }
         })
 
