@@ -41,12 +41,14 @@ function project() {
 
             const titleLabel = Dom.createBasicLabel('Title:', 'project-title-input');
             const titleInput = Dom.createBasicInput('text', 'project-title-input', 'project-title-input');
+            titleInput.required = true;
+            titleInput.maxLength = 48;
             const title = Dom.wrapInDiv(titleLabel, titleInput);
 
             const submitBtn = submitButton(titleInput.value);
             submitBtn.addEventListener('click', event => {
                 if (projectData.projectTitleValidation(titleInput.value)) {
-                    alert(`Your title contains a word that is too long and I don't like it\n(11+ letters)\n\nDo better this time`)
+                    alert(`Your title cannot contain a word that is too long(11+ letters)\nor no words because I don't like it\n\nDo better this time`)
                 } else {
                     projectData.createProject(titleInput.value);
                     projectBar.regenerateProjects();
@@ -78,10 +80,17 @@ function task() {
 
             const titleLabel = Dom.createBasicLabel('Title:', 'task-title-input');
             const titleInput = Dom.createBasicInput('text', 'task-title-input', 'task-title-input');
+            titleInput.required = true;
+            titleInput.maxLength = 28;
             const title = Dom.wrapInDiv(titleLabel, titleInput);
 
             const dueDateLabel = Dom.createBasicLabel('Due Date:', 'task-due-date-input');
             const dueDateInput = Dom.createBasicInput('date', 'task-due-date-input', 'task-due-date-input');
+            dueDateInput.required = true;
+
+            dueDateInput.addEventListener('input', input => {
+
+            })
             const dueDate = Dom.wrapInDiv(dueDateLabel, dueDateInput);
 
             const descriptionLabel = Dom.createBasicLabel('Description:', 'task-description-input');

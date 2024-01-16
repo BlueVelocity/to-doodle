@@ -78,7 +78,6 @@ function generateWidgetElement(task) {
         selectedWidget.classList = 'task-widget selected';
 
         taskData.setCurrentTask(Number(selectedWidget.getAttribute('data-task-id')))
-        console.log(taskData.getCurrentTaskNum())
 
         taskInfo.showTaskInfo();
     })

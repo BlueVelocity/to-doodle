@@ -414,7 +414,7 @@ input {
 	border: black solid 1px;
 	border-radius: 1rem;
 
-	box-shadow: black 0.5rem 0.5rem 0.5rem;
+	box-shadow: black 0.1rem 0.1rem 0.1rem;
 
 	background-color: var(--main-color);
 }
@@ -435,6 +435,13 @@ input {
 	display: flex;
 	margin: 0.2rem;
 	align-items: center;
+
+	border: none;
+	border-radius: 0.1rem;
+}
+
+#popUp form > div > *:invalid {
+	outline: 1px solid red;
 }
 
 #popUp p {
