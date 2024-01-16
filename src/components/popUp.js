@@ -1,3 +1,4 @@
+import { format, compareAsc } from 'date-fns';
 import Dom from '../modules/DOMInteraction.js';
 import projectData from '../modules/projectManagement.js';
 import projectBar from './projectBar.js';
@@ -89,7 +90,14 @@ function task() {
             dueDateInput.required = true;
 
             dueDateInput.addEventListener('input', input => {
+                const creationDate = format(new Date(), "yyyy-MM-dd");
 
+                console.log (compareAsc(creationDate, input.target.value) === -1 || compareAsc(creationDate, input.target.value) === 0)
+                if (compareAsc(creationDate, input.target.value) === -1 || compareAsc(creationDate, input.target.value) === 0) {        
+                    input.target.setCustomValidity("")
+                } else {
+                    input.target.setCustomValidity("Invalid field.")
+                }
             })
             const dueDate = Dom.wrapInDiv(dueDateLabel, dueDateInput);
 

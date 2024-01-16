@@ -444,6 +444,10 @@ input {
 	outline: 1px solid red;
 }
 
+#popUp form > div > *:valid {
+	outline: 1px solid green;
+}
+
 #popUp p {
 	margin-right: auto;
 }
