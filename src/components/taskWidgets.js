@@ -4,6 +4,7 @@ import projectData from '../modules/projectManagement.js';
 import trashIcon from '../icons/garbage_3234849.png';
 import taskContent from './taskContent.js';
 import taskInfo from './taskInformation.js';
+import storage from '../modules/storageManagement.js';
 
 export default { generateProjectWidgets, checkCurrentCheckbox, uncheckCurrentCheckbox }
 
@@ -45,6 +46,8 @@ function generateWidgetElement(task) {
                     taskCompleteButton.classList = '';
                 }
             }
+            
+            storage.setStorage();
         })
     
         const deleteButton = document.createElement('button');
@@ -59,6 +62,8 @@ function generateWidgetElement(task) {
             
             taskData.deleteTask(widgetTaskId);
             taskContent.removeTaskById(event.target.parentElement.getAttribute('data-task-id'));
+
+            storage.setStorage();
 
             if (widgetTaskId === taskData.getCurrentTaskNum()) {
                 taskInfo.removeTaskInfo();

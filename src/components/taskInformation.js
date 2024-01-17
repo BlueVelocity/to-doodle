@@ -1,6 +1,7 @@
 import Dom from '../modules/DOMInteraction.js';
 import taskData from '../modules/taskManagement.js';
 import taskWidgets from './taskWidgets.js';
+import storage from '../modules/storageManagement.js';
 
 export default { showTaskInfo, removeTaskInfo };
 
@@ -53,13 +54,15 @@ function showTaskInfo() {
             completed.textContent = 'Completed';
             currentTask.completed = true;
             event.target.classList = '';
-            taskWidgets.checkCurrentCheckbox()
+            taskWidgets.checkCurrentCheckbox();
         } else {
             completed.textContent = 'Incomplete';
             currentTask.completed = false;
             event.target.classList = 'task-incomplete';
             taskWidgets.uncheckCurrentCheckbox();
         }
+
+        storage.setStorage();
     })
 
     const container = document.querySelector('.task-information');

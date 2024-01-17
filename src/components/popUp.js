@@ -4,6 +4,7 @@ import projectData from '../modules/projectManagement.js';
 import projectBar from './projectBar.js';
 import taskData from '../modules/taskManagement.js';
 import taskContent from './taskContent.js';
+import storage from '../modules/storageManagement.js';
 
 export default { project, task };
 
@@ -53,6 +54,8 @@ function project() {
                 } else {
                     projectData.createProject(titleInput.value);
                     projectBar.regenerateProjects();
+
+                    storage.setStorage();
                 
                     Dom.closePopUp(event)
                 }
@@ -123,6 +126,8 @@ function task() {
                 if (taskData.validateInputs(titleInput.value, dueDateInput.value, descriptionInput.value, priorityInput.value, notesInput.value)) {
                     taskData.createTask(titleInput.value, dueDateInput.value, descriptionInput.value, priorityInput.value, notesInput.value);
                     taskContent.loadProjectTasks();
+
+                    storage.setStorage();
 
                     Dom.closePopUp(event);
                 } else {

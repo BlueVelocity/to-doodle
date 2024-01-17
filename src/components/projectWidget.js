@@ -5,6 +5,7 @@ import taskInfo from './taskInformation';
 import projectData from '../modules/projectManagement';
 import trashIcon from '../icons/garbage_3234849.png';
 import taskManagement from '../modules/taskManagement';
+import storage from '../modules/storageManagement.js';
 
 export default { generateWidgets }
 
@@ -57,6 +58,8 @@ function generateWidgets() {
         deleteButton.addEventListener('click', event => {
             event.stopPropagation();
             projectData.deleteProjectById(event.target.parentElement.getAttribute('id'));
+
+            storage.setStorage();
 
             if (event.target.parentElement.getAttribute('id') == projectData.getCurrentProjectNum()) {
                 taskContent.clearWidgets();
