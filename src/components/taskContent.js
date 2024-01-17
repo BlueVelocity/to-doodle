@@ -16,7 +16,10 @@ function firstLoad() {
 function createMainContent() {
     const taskWidgetsContainer = document.createElement('div');
     taskWidgetsContainer.classList = 'task-widget-container';
-    Dom.appendElement(taskWidgetsContainer, taskWidgets.generateProjectWidgets());
+
+    if (Object.keys(projectData.getProjects()).length != 0) {
+        Dom.appendElement(taskWidgetsContainer, taskWidgets.generateProjectWidgets());
+    }
 
     const taskInformationContainer = document.createElement('div');
     taskInformationContainer.classList = 'task-information';
