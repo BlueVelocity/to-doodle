@@ -2,7 +2,8 @@ import task from './taskManagement';
 import storage from './storageManagement';
 
 export default { setCurrentProject, setCurrentToLastProject, getProjects, getCurrentProjectNum, createProject, getTaskById, 
-                addTaskToProject, getTaskCount, deleteTaskFromProject, deleteProjectById, projectTitleValidation };
+                addTaskToProject, getTaskCount, deleteTaskFromProject, deleteProjectById,
+                 projectTitleValidation };
 
 let projects = {};
 let projectsCounter = 1;
@@ -64,9 +65,20 @@ function getTaskCount(projectId) {
     return projects[`${projectId}`].tasks.length;
 }
 
+function getHighestTaskNumber() {
+    let counter = 0;
+    Object.keys(projects).forEach(projKey => {
+        projects[`${projKey}`].tasks.forEach(task => {
+            if (task.taskId > counter) {
+                counter = task.taskId;
+            }
+        });
+    })
+    return counter;
+}
+
 function deleteProjectById(id) {
     delete projects[`${id}`];
-    console.log(`Project with ID no. ${id} deleted`);
 }
 
 function projectTitleValidation(title) {
@@ -91,6 +103,8 @@ const storedInfo = storage.getStorage();
 if (storage.checkIfStorageIsAvailable() && storedInfo != undefined) {
     projects = storage.getStorage();
     projectsCounter = Object.keys(storedInfo).length + 1;
+    task.setTaskIdCounter(getHighestTaskNumber() + 1);
+    task.reapplyFunctionsToTasks();
 } else {
     freshStartup('Project A');
     task.createTask('Example Task', '2100-12-30', 'This is the task\'s description', '1', 'This is the task\'s notes')

@@ -8,9 +8,25 @@ import storage from '../modules/storageManagement.js';
 
 export default { generateProjectWidgets, checkCurrentCheckbox, uncheckCurrentCheckbox }
 
+function loadTaskInfoFromParentId(event) {
+    const taskWidgets = document.querySelectorAll('.task-widget');
+    taskWidgets.forEach( element => element.classList = 'task-widget');
+    
+    const selectedWidget = event.target.parentElement;
+    selectedWidget.classList = 'task-widget selected';
+
+    taskData.setCurrentTask(Number(selectedWidget.getAttribute('data-task-id')))
+
+    taskInfo.showTaskInfo();
+}
+
 function generateWidgetElement(task) {
     const taskWidget = document.createElement('div');
-    taskWidget.classList = 'task-widget';
+    if (task.taskId == taskData.getCurrentTaskNum()) {
+        taskWidget.classList = 'task-widget selected';
+    } else {
+        taskWidget.classList = 'task-widget';
+    }
     taskWidget.setAttribute('data-task-id', `${task.taskId}`);
 
     function generateWidgetContent() {
@@ -19,6 +35,21 @@ function generateWidgetElement(task) {
 
         const dueDate = document.createElement('p');
         dueDate.textContent = task.dueDate;
+
+        title.addEventListener('click', event => loadTaskInfoFromParentId(event));
+        dueDate.addEventListener('click', event => loadTaskInfoFromParentId(event));
+
+        taskWidget.addEventListener('click', (event) => {
+            const taskWidgets = document.querySelectorAll('.task-widget');
+            taskWidgets.forEach( element => element.classList = 'task-widget');
+            
+            const selectedWidget = event.target;
+            selectedWidget.classList = 'task-widget selected';
+    
+            taskData.setCurrentTask(Number(selectedWidget.getAttribute('data-task-id')))
+    
+            taskInfo.showTaskInfo();
+        })
     
         const checkBox = Dom.createBasicInput('input', `task-completed`, `task-completed`);
         checkBox.setAttribute('data-task-checkbox-id', task.taskId);
@@ -93,13 +124,27 @@ function generateWidgetElement(task) {
 }
 
 function generateProjectWidgets() {
-    const projects = projectData.getProjects();
-    const tasks = projects[`${projectData.getCurrentProjectNum()}`].tasks.map( (task) => {
+    const project = projectData.getProjects()[`${projectData.getCurrentProjectNum()}`];
+
+    function checkIfCurrentTaskIsPresent() {
+        let answer = false;
+        project.tasks.forEach( task => {
+            if (task.taskId === taskData.getCurrentTaskNum()) {
+                answer = true;
+            }
+        })
+        return answer;
+    }
+
+    const tasks = project.tasks.map( (task) => {
         return generateWidgetElement(task);
     });
 
-    if (tasks.length > 0) {
+    if (tasks.length > 0 && !checkIfCurrentTaskIsPresent()) {
         tasks[0].classList = 'task-widget selected';
+    } else if (checkIfCurrentTaskIsPresent()){
+        const taskWidgetElement = document.querySelectorAll(`[data-task-id="${taskData.getCurrentTaskNum()}"]`);
+        taskWidgetElement.classList = 'task-widget selected'
     }
     
     return tasks

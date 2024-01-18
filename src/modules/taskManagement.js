@@ -1,7 +1,7 @@
 import { format, compareAsc } from 'date-fns';
 import projectData from './projectManagement';
 
-export default { createTask, getCurrentTask, getCurrentTaskNum, setCurrentTask, deleteTask, validateInputs };
+export default { createTask, getCurrentTask, getCurrentTaskNum, setCurrentTask, setTaskIdCounter, deleteTask, validateInputs, reapplyFunctionsToTasks };
 
 let taskIdCounter = 1;
 let currentTask = 1;
@@ -25,6 +25,10 @@ function setCurrentTask(id) {
     } else {
         console.log(`Error: Task '${id}' not present in current project`)
     }
+}
+
+function setTaskIdCounter(count) {
+    taskIdCounter = count;
 }
 
 function deleteTask(id) {
@@ -70,6 +74,22 @@ function validateInputs(title, dueDate, description, priority, notes) {
         checkPriority(priority), checkNotes(notes)].includes(false);
 }
 
+const appendTask = function(title, dueDate, description, priority, notes) {
+    this.title = title;
+    this.dueDate = dueDate;
+    this.description = description;
+    this.priority = priority;
+    this.notes = notes;
+}
+
+function reapplyFunctionsToTasks() {
+    Object.keys(projectData.getProjects()).forEach(projKey => {
+        projectData.getProjects()[`${projKey}`].tasks.forEach(task => {
+            task.appendTask = appendTask;
+        });
+    })
+}
+
 function createTask(title, dueDate, description, priority, notes) {
     const creationDate = format(new Date(), "yyyy-MM-dd");
 
@@ -77,7 +97,8 @@ function createTask(title, dueDate, description, priority, notes) {
         console.log('Error: No projects, can\'t create task');
     } else if (validateInputs(title, dueDate, description, priority, notes)) {
         const currentProjectId = projectData.getCurrentProjectNum()
-        projectData.addTaskToProject(currentProjectId, { title, creationDate, dueDate, description, priority, notes, completed: false, taskId: taskIdCounter });
+        projectData.addTaskToProject(currentProjectId, { title, creationDate, dueDate, description, priority, notes, completed: false, taskId: taskIdCounter, appendTask });
+        currentTask = taskIdCounter;
         taskIdCounter++;
     } else {
         console.log('Form filled out improperly!')

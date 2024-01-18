@@ -1,7 +1,9 @@
 import Dom from '../modules/DOMInteraction.js';
 import taskData from '../modules/taskManagement.js';
 import taskWidgets from './taskWidgets.js';
+import inputWindow from './popUp.js';
 import storage from '../modules/storageManagement.js';
+import icon from '../icons/edit.png';
 
 export default { showTaskInfo, removeTaskInfo };
 
@@ -14,9 +16,18 @@ function showTaskInfo() {
         if (taskData.getCurrentTask() != undefined) {
         let currentTask = taskData.getCurrentTask();
 
-        const title = document.createElement('li');
-        title.classList = 'task-title';
-        title.textContent = currentTask.title;
+        const titleText = document.createElement('li');
+        titleText.classList = 'task-title';
+        titleText.textContent = currentTask.title;
+
+        const editButton = document.createElement('button');
+        const editIcon = new Image();
+        editIcon.src = icon;
+        editButton.appendChild(editIcon);
+
+        editButton.addEventListener('click', () => Dom.showPopUp(inputWindow.editTask()))
+
+        const title = Dom.wrapInDiv(titleText, editButton);
 
         const dateCreated = document.createElement('li');
         dateCreated.textContent = `Date Created: ${currentTask.creationDate}`;
