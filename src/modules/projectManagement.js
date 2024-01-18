@@ -42,7 +42,11 @@ function setCurrentToLastProject() {
 }
 
 function getTaskById(id) {;
-    return projects[`${currentProject}`].tasks.find( task => task.taskId === id);
+    if (Object.keys(projects).length === 0) {
+        console.log('No tasks to get');
+    } else {
+        return projects[`${currentProject}`].tasks.find( task => task.taskId === id);
+    }
 }
 
 function addTaskToProject(projectId, task) {
