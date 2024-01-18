@@ -4,8 +4,9 @@ import taskContent from './taskContent';
 import taskInfo from './taskInformation';
 import projectData from '../modules/projectManagement';
 import trashIcon from '../icons/garbage_3234849.png';
-import taskManagement from '../modules/taskManagement';
+import taskData from '../modules/taskManagement.js';
 import storage from '../modules/storageManagement.js';
+import taskInformation from './taskInformation';
 
 export default { generateWidgets }
 
@@ -37,7 +38,7 @@ function generateWidgets() {
 
                 taskInfo.removeTaskInfo();
                 if ((projectData.getProjects())[`${projectData.getCurrentProjectNum()}`].tasks.length != 0) {
-                    taskManagement.setCurrentTask((projectData.getProjects())[`${event.target.id}`].tasks[0].taskId);
+                    taskData.setCurrentTask((projectData.getProjects())[`${event.target.id}`].tasks[0].taskId);
                     taskInfo.showTaskInfo();
                 }
             }
@@ -57,6 +58,12 @@ function generateWidgets() {
 
         deleteButton.addEventListener('click', event => {
             event.stopPropagation();
+
+            if (projectData.getCurrentProjectNum() == event.target.parentElement.getAttribute('id') && 
+                taskData.checkIfIdIsPresent(projectData.getProjects()[`${projectData.getCurrentProjectNum()}`].tasks, taskData.getCurrentTaskNum())) {
+                    taskInformation.removeTaskInfo();
+            }
+
             projectData.deleteProjectById(event.target.parentElement.getAttribute('id'));
 
             storage.setStorage();

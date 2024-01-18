@@ -1,7 +1,8 @@
 import { format, compareAsc } from 'date-fns';
 import projectData from './projectManagement';
 
-export default { createTask, getCurrentTask, getCurrentTaskNum, setCurrentTask, setTaskIdCounter, deleteTask, validateInputs, reapplyFunctionsToTasks };
+export default { createTask, getCurrentTask, getCurrentTaskNum, setCurrentTask, setTaskIdCounter, deleteTask, validateInputs,
+                checkIfIdIsPresent, reapplyFunctionsToTasks };
 
 let taskIdCounter = 1;
 let currentTask = 1;
